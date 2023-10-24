@@ -10,6 +10,7 @@ import {
   TRACKER_CREATE_ACTION,
   TRACKER_UPDATE_ACTION,
   TRACKER_DELETE_ACTION,
+  TRACKER_FAIL_ACTION,
 } from "./Trackers/trackers.reducer.js";
 
 function useEditTracker(defaultTracker) {
@@ -26,31 +27,78 @@ function useEditTracker(defaultTracker) {
   const { tracker, error, status, activeButtons, activeInput } = trackersState;
 
   const setTracker = (tracker) => {
-    dispatchTrackersAction({
-      type: TRACKER_SET_TRACKER_ACTION,
-      payload: tracker,
-    });
+    try {
+      dispatchTrackersAction({
+        type: TRACKER_SET_TRACKER_ACTION,
+        payload: tracker,
+      });
+    } catch (error) {
+      dispatchTrackersAction({
+        type: TRACKER_FAIL_ACTION,
+        payload: error.message,
+      });
+    }
   };
+
   const editTracker = (tracker) => {
-    dispatchTrackersAction({
-      type: TRACKER_EDIT_ACTION,
-      payload: tracker,
-    });
+    try {
+      dispatchTrackersAction({
+        type: TRACKER_EDIT_ACTION,
+        payload: tracker,
+      });
+    } catch (error) {
+      dispatchTrackersAction({
+        type: TRACKER_FAIL_ACTION,
+        payload: error.message,
+      });
+    }
   };
-  const saveTracker = () => {
-    dispatchTrackersAction({ type: TRACKER_CREATE_ACTION });
+
+  const createTracker = () => {
+    try {
+      dispatchTrackersAction({ type: TRACKER_CREATE_ACTION });
+    } catch (error) {
+      dispatchTrackersAction({
+        type: TRACKER_FAIL_ACTION,
+        payload: error.message,
+      });
+    }
   };
+
   const updateTracker = () => {
-    dispatchTrackersAction({ type: TRACKER_UPDATE_ACTION });
+    try {
+      dispatchTrackersAction({ type: TRACKER_UPDATE_ACTION });
+    } catch (error) {
+      dispatchTrackersAction({
+        type: TRACKER_FAIL_ACTION,
+        payload: error.message,
+      });
+    }
   };
+
   const deleteTracker = () => {
-    dispatchTrackersAction({ type: TRACKER_DELETE_ACTION });
+    try {
+      dispatchTrackersAction({ type: TRACKER_DELETE_ACTION });
+    } catch (error) {
+      dispatchTrackersAction({
+        type: TRACKER_FAIL_ACTION,
+        payload: error.message,
+      });
+    }
   };
+
   const newTracker = (tracker) => {
-    dispatchTrackersAction({
-      type: TRACKER_NEW_ACTION,
-      payload: tracker,
-    });
+    try {
+      dispatchTrackersAction({
+        type: TRACKER_NEW_ACTION,
+        payload: tracker,
+      });
+    } catch (error) {
+      dispatchTrackersAction({
+        type: TRACKER_FAIL_ACTION,
+        payload: error.message,
+      });
+    }
   };
 
   return {
@@ -61,7 +109,7 @@ function useEditTracker(defaultTracker) {
     activeInput,
     setTracker,
     editTracker,
-    saveTracker,
+    createTracker,
     updateTracker,
     deleteTracker,
     newTracker,
@@ -88,7 +136,7 @@ const TrackerEditForm = ({
     activeInput,
     setTracker,
     editTracker,
-    saveTracker,
+    createTracker,
     updateTracker,
     deleteTracker,
     newTracker,
@@ -120,7 +168,7 @@ const TrackerEditForm = ({
   const handleOnSubmit = (e) => {
     e.preventDefault();
     onAddTracker(tracker);
-    saveTracker();
+    createTracker();
   };
 
   const handleUpdateTracker = () => {
