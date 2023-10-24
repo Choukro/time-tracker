@@ -10,6 +10,31 @@ import {
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import {
+  CounterClockwiseClockIcon,
+  Pencil1Icon,
+  TrashIcon,
+} from "@radix-ui/react-icons";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { Separator } from "@/components/ui/separator";
+import { Input } from "./ui/input.jsx";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "./ui/button.jsx";
 
 const TrackerRow = ({ tracker, selectedId, onSelected }) => {
   const starttime = new Date(tracker?.starttime)
@@ -55,20 +80,85 @@ const TrackerRow = ({ tracker, selectedId, onSelected }) => {
             <div className="flex flex-row gap-2">
               <Badge>{tracker.category}</Badge>
               <CardDescription className="text-left">
-                🕙 {starttime} - {endtime}
+                {starttime} - {endtime}
               </CardDescription>
             </div>
           </div>
           <div className="w-1/3">
-            <CardContent className="flex flex-col gap-2 p-0">
-              <p className="font-bold text-right">⏳</p>
+            <CardContent className="flex flex-col gap-2 p-1">
+              <CounterClockwiseClockIcon className="ml-auto" />
               <p className="font-bold dark:text-white text-right">{duration}</p>
             </CardContent>
           </div>
           <div>
-            <CardFooter className="flex flex-col gap-2 pb-0 pr-0">
-              <button className="btn btn-primary">🔍</button>
-              <button className="btn btn-primary">🔍</button>
+            <CardFooter className="flex flex-col gap-1 pb-0 pr-0">
+              <Dialog>
+                <DialogTrigger className="rounded p-1 hover:bg-pink-300">
+                  <Pencil1Icon />
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogTitle className="mt-10">
+                    Modification d&apos;un Tracker
+                  </DialogTitle>
+                  <Separator className="my-2" />
+                  <DialogDescription>
+                    Vous pouvez modifier les informations du tracker ci-dessous.
+                  </DialogDescription>
+                  <Separator className="my-2" />
+                  <div className="space-y-6">
+                    <div>
+                      <Label htmlFor="trackerName">Nom du tracker : </Label>
+                      <Input
+                        type="text"
+                        id="trackerName"
+                        placeholder="Tracker name..."
+                        defaultValue={tracker.name}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="trackerDateStart">Date de début : </Label>
+                      <Input
+                        id="trackerDateStart"
+                        type="datetime-local"
+                        placeholder="Date de début..."
+                        defaultValue={tracker.starttime}
+                      ></Input>
+                    </div>
+                    <div>
+                      <Label htmlFor="trackerDateEnd">Date de fin : </Label>
+                      <Input
+                        id="trackerDateEnd"
+                        type="datetime-local"
+                        placeholder="Date de fin..."
+                        defaultValue={tracker.endtime}
+                      ></Input>
+                    </div>
+                    <div>
+                      <Label>Categorie : </Label>
+                      <Select>
+                        <SelectTrigger className="w-[180px]">
+                          <SelectValue placeholder={tracker.category} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Sport">Sport</SelectItem>
+                          <SelectItem value="Code">Code</SelectItem>
+                          <SelectItem value="Perso">Perso</SelectItem>
+                          <SelectItem value="Défaut">Défaut</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                  <DialogFooter className="mt-8">
+                    <DialogClose asChild>
+                      <Button variant="outline">Annuler</Button>
+                    </DialogClose>
+                    <Button className="">Enregistrer</Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+              <button className="rounded p-1 hover:bg-pink-300">
+                <TrashIcon />
+              </button>
             </CardFooter>
           </div>
         </CardHeader>
