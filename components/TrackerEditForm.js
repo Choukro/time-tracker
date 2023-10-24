@@ -2,103 +2,53 @@ import * as React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { getDateTimeForPicker } from "../app/helper";
 import "./styles/TrackerEditForm.css";
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "new":
-      return {
-        status: "new",
-        tracker: action.payload,
-        activeButtons: { btnSave: true, btnUp: false, btnDel: false },
-        activeInput: true,
-        error: null,
-      };
-    case "edit":
-      return {
-        status: "edition",
-        tracker: action.payload,
-        activeButtons: { btnSave: false, btnUp: true, btnDel: true },
-        activeInput: true,
-        error: null,
-      };
-    case "save":
-      return {
-        ...state,
-        status: "saved",
-        activeButtons: { btnSave: false, btnUp: false, btnDel: false },
-        activeInput: false,
-        error: null,
-      };
-    case "update":
-      return {
-        ...state,
-        status: "updated",
-        activeButtons: { btnSave: false, btnUp: true, btnDel: true },
-        activeInput: true,
-        error: null,
-      };
-    case "delete":
-      return {
-        ...state,
-        status: "deleted",
-        tracker: action.payload,
-        activeButtons: { btnSave: false, btnUp: false, btnDel: false },
-        activeInput: false,
-        error: null,
-      };
-    case "fail":
-      return {
-        status: "fail",
-        tracker: null,
-        activeButtons: { btnSave: true, btnUp: true, btnDel: true },
-        activeInput: false,
-        error: action.error,
-      };
-    case "trackerChange":
-      return {
-        ...state,
-        tracker: action.payload,
-        error: null,
-      };
-    default:
-      throw new Error("Action non supporté");
-  }
-};
+import trackerReducer from "./Trackers/trackers.reducer.js";
+import {
+  TRACKER_SET_TRACKER_ACTION,
+  TRACKER_NEW_ACTION,
+  TRACKER_EDIT_ACTION,
+  TRACKER_CREATE_ACTION,
+  TRACKER_UPDATE_ACTION,
+  TRACKER_DELETE_ACTION,
+} from "./Trackers/trackers.reducer.js";
 
 function useEditTracker(defaultTracker) {
-  const [state, dispatch] = React.useReducer(reducer, {
-    tracker: defaultTracker,
-    error: null,
-    status: "idle",
-    activeInput: false,
-    activeButtons: { btnSave: false, btnUp: false, btnDel: false },
-  });
-  const { tracker, error, status, activeButtons, activeInput } = state;
+  const [trackersState, dispatchTrackersAction] = React.useReducer(
+    trackerReducer,
+    {
+      tracker: defaultTracker,
+      error: null,
+      status: "idle",
+      activeInput: false,
+      activeButtons: { btnSave: false, btnUp: false, btnDel: false },
+    }
+  );
+  const { tracker, error, status, activeButtons, activeInput } = trackersState;
 
   const setTracker = (tracker) => {
-    dispatch({
-      type: "trackerChange",
+    dispatchTrackersAction({
+      type: TRACKER_SET_TRACKER_ACTION,
       payload: tracker,
     });
   };
   const editTracker = (tracker) => {
-    dispatch({
-      type: "edit",
+    dispatchTrackersAction({
+      type: TRACKER_EDIT_ACTION,
       payload: tracker,
     });
   };
   const saveTracker = () => {
-    dispatch({ type: "save" });
+    dispatchTrackersAction({ type: TRACKER_CREATE_ACTION });
   };
   const updateTracker = () => {
-    dispatch({ type: "update" });
+    dispatchTrackersAction({ type: TRACKER_UPDATE_ACTION });
   };
   const deleteTracker = () => {
-    dispatch({ type: "update" });
+    dispatchTrackersAction({ type: TRACKER_DELETE_ACTION });
   };
   const newTracker = (tracker) => {
-    dispatch({
-      type: "new",
+    dispatchTrackersAction({
+      type: TRACKER_NEW_ACTION,
       payload: tracker,
     });
   };
