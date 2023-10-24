@@ -1,0 +1,36 @@
+.Form {
+    text-align: left;
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.Form input {
+    font-size: 18px;
+    width: 100%;
+}
+
+.Form select {
+    font-size: 18px;
+    width: 100%;
+}
+
+.Form legend {
+    text-align: center;
+}
+
+.Form label {
+    text-align: left;
+    width: 100%;
+}
+
+.Action {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 10px 0px 10px 0px;
+}
+
+.Action input {
+    background-color: #6e83ad;
+}
