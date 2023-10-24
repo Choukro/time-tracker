@@ -97,8 +97,8 @@ const TrackerRow = ({ tracker, selectedId, onSelected }) => {
                   <Pencil1Icon />
                 </DialogTrigger>
                 <DialogContent>
-                  <DialogTitle className="mt-10">
-                    Modification d&apos;un Tracker
+                  <DialogTitle className="mt-10 text-purple-400">
+                    Modification du Tracker
                   </DialogTitle>
                   <Separator className="my-2" />
                   <DialogDescription>
@@ -156,9 +156,27 @@ const TrackerRow = ({ tracker, selectedId, onSelected }) => {
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
-              <button className="rounded p-1 hover:bg-pink-300">
-                <TrashIcon />
-              </button>
+              <Dialog>
+                <DialogTrigger className="rounded p-1 hover:bg-pink-300">
+                  <TrashIcon />
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogTitle className="mt-10 text-purple-400">
+                    Suppression du Tracker
+                  </DialogTitle>
+                  <Separator className="my-2" />
+                  <DialogDescription>
+                    Voulez-vous vraiment supprimez cette entrée ?
+                  </DialogDescription>
+                  <Separator className="my-2" />
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline">Annuler</Button>
+                    </DialogClose>
+                    <Button variant="destructive">Supprimer</Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
             </CardFooter>
           </div>
         </CardHeader>
