@@ -1,5 +1,4 @@
 import * as React from "react";
-import "./styles/TrackersTable.css";
 import { groupBy } from "../app/helper";
 import { TrackerCategory } from "./TrackerCategory";
 import { TrackerRow } from "./TrackerRow";
