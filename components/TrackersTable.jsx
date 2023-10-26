@@ -12,6 +12,7 @@ const TrackersTable = ({ trackers, selectedTracker, onSelectedTracker }) => {
   const rows = [];
   let lastField = "";
   let fieldSelected = "starttime";
+
   const trackersByField = groupBy(trackers, fieldSelected);
   const sortedTrackersByField =
     fieldSelected === "starttime"
@@ -19,7 +20,11 @@ const TrackersTable = ({ trackers, selectedTracker, onSelectedTracker }) => {
       : sortObjectKeysAscendingOrder(trackersByField);
   Object.keys(sortedTrackersByField).forEach((field) => {
     sortedTrackersByField[field].forEach((tracker) => {
-      if (tracker[fieldSelected] !== lastField) {
+      if (
+        (fieldSelected === "starttime"
+          ? tracker[fieldSelected].substring(0, 10)
+          : tracker[fieldSelected]) !== lastField
+      ) {
         rows.push(
           <TrackerCategory
             key={field}
@@ -40,7 +45,10 @@ const TrackersTable = ({ trackers, selectedTracker, onSelectedTracker }) => {
           onSelected={onSelectedTracker}
         ></TrackerRow>
       );
-      lastField = tracker[fieldSelected];
+      lastField =
+        fieldSelected === "starttime"
+          ? tracker[fieldSelected].substring(0, 10)
+          : tracker[fieldSelected];
     });
   });
 

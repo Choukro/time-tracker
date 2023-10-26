@@ -1,6 +1,6 @@
 import * as React from "react";
 import { v4 as uuidv4 } from "uuid";
-// import { getDateTimeForPicker } from "../utils/trackers.util.js";
+import { getDateTimeForPicker } from "../utils/trackers.util.js";
 import "./styles/TrackerEditForm.css";
 import trackerReducer from "./trackers/trackers.reducer.js";
 import {
@@ -119,7 +119,7 @@ function useEditTracker(defaultTracker) {
 const newDefaultTracker = () => ({
   id: uuidv4(),
   category: "Défaut",
-  starttime: "", // starttime: getDateTimeForPicker(),
+  starttime: getDateTimeForPicker(),
   endtime: "",
   name: "",
 });

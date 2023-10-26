@@ -27,7 +27,7 @@ export function groupBy(tableauObjets, propriete) {
 }
 
 /**
- * trie par ordre décroissant les objets d'un tableau
+ * Trie par ordre décroissant les objets d'un tableau
  *
  * @param {*} tableauObjets
  * @returns
@@ -42,7 +42,7 @@ export function sortObjectKeysDescendingOrder(tableauObjets) {
 }
 
 /**
- * trie par ordre croissant les objets d'un tableau
+ * Trie par ordre croissant les objets d'un tableau
  *
  * @param {*} tableauObjets
  * @returns
@@ -57,18 +57,15 @@ export function sortObjectKeysAscendingOrder(tableauObjets) {
 }
 
 /**
- * objectif ! difference entre 2 dates :
- * avoir une chaine de caracteres qui affiche : Days : Heures : Minutes : secondes : Milliseconde
- * algo ! on faire faire la difference en ms : calculer les jours, sourstraire, les heures + sourstraires etc ...tracker
-
+ * Difference entre 2 dates :
  * 1 : date de depart et date de fin (date de fin peut etre undefined = now)
  * 2 : calcul delta diff /1000 pour avoir en seconde
  * 3 : calcul nb days : delta/ 86400 : nombre de seconde / 86400 (seconde dans days) pour avoir le nombre de days
  * 4 : calcul nb heures  :delta / 3600 : nombre de seconde restante / 3600 polur avoir le nombre d'heures restante
  * 5 : calcul nb minutes  :delta / 60 : nombre de seconde restant / 60 pour avoir les minutes
  * 6 : calcul nb sec  :delta / 60 : nombre de seconde restant / 60 pour avoir les minutes
- * @param string (date au format iso)
- * @returns durée : days : hours : minutes : seconds
+ * @param string (date de début, date de fin)
+ * @returns Durée au format days : hours : minutes : seconds
  */
 export const diffTime = (start, end) => {
   start = new Date(start);
@@ -108,16 +105,38 @@ export const diffTime = (start, end) => {
 };
 
 /**
- * @param date
- * @returns date au format iso - 5 derniers caracteres supprimés
+ * @param string (date)
+ * @returns date au format ISO 8601 incluant timezone offset - 6 derniers caracteres supprimés
  */
+const toISOStringWithTimezone = (date) => {
+  const tzOffset = -date.getTimezoneOffset();
+  const diff = tzOffset >= 0 ? "+" : "-";
+  const pad = (n) => `${Math.floor(Math.abs(n))}`.padStart(2, "0");
+  return (
+    date.getFullYear() +
+    "-" +
+    pad(date.getMonth() + 1) +
+    "-" +
+    pad(date.getDate()) +
+    "T" +
+    pad(date.getHours()) +
+    ":" +
+    pad(date.getMinutes()) +
+    ":" +
+    pad(date.getSeconds()) +
+    diff +
+    pad(tzOffset / 60) +
+    ":" +
+    pad(tzOffset % 60)
+  );
+};
 export const getDateTimeForPicker = (date = new Date()) => {
-  const dateIso = date.toISOString();
-  return dateIso.substring(0, dateIso.length - 5);
+  const dateIso = toISOStringWithTimezone(date);
+  return dateIso.substring(0, dateIso.length - 6);
 };
 
 /**
- * @param string (date au format iso)
+ * @param string (date au format ISO 8601)
  * @returns heure au format hh:mm
  */
 export const getHourAsString = (date) => {
@@ -126,7 +145,7 @@ export const getHourAsString = (date) => {
 };
 
 /**
- * @param string (date au format iso)
+ * @param string (date au format ISO 8601)
  * @returns Affiche "Aujourd'hui" si la date est la même que la date actuelle, "Hier" si la date est différente d'un jour par rapport à la date actuelle, sinon date au format jour mois aaaa
  */
 export const getDateAsString = (date) => {
