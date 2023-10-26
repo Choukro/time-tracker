@@ -35,6 +35,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "./ui/button.jsx";
+import {
+  TRACKER_CATEGORY_1,
+  TRACKER_CATEGORY_2,
+  TRACKER_CATEGORY_3,
+  TRACKER_CATEGORY_4,
+  TRACKER_CATEGORY_5,
+} from "./trackers/trackers.constants.js";
 
 const TrackerRow = ({ tracker, selectedId, onSelected }) => {
   const starttime = getHourAsString(tracker?.starttime);
@@ -136,10 +143,21 @@ const TrackerRow = ({ tracker, selectedId, onSelected }) => {
                           <SelectValue placeholder={tracker.category} />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="Sport">Sport</SelectItem>
-                          <SelectItem value="Code">Code</SelectItem>
-                          <SelectItem value="Perso">Perso</SelectItem>
-                          <SelectItem value="Défaut">Défaut</SelectItem>
+                          <SelectItem value={TRACKER_CATEGORY_1}>
+                            {TRACKER_CATEGORY_1}
+                          </SelectItem>
+                          <SelectItem value={TRACKER_CATEGORY_2}>
+                            {TRACKER_CATEGORY_2}
+                          </SelectItem>
+                          <SelectItem value={TRACKER_CATEGORY_3}>
+                            {TRACKER_CATEGORY_3}
+                          </SelectItem>
+                          <SelectItem value={TRACKER_CATEGORY_4}>
+                            {TRACKER_CATEGORY_4}
+                          </SelectItem>
+                          <SelectItem value={TRACKER_CATEGORY_5}>
+                            {TRACKER_CATEGORY_5}
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>

@@ -12,6 +12,13 @@ import {
   TRACKER_DELETE_ACTION,
   TRACKER_FAIL_ACTION,
 } from "./trackers/trackers.reducer.js";
+import {
+  TRACKER_CATEGORY_1,
+  TRACKER_CATEGORY_2,
+  TRACKER_CATEGORY_3,
+  TRACKER_CATEGORY_4,
+  TRACKER_CATEGORY_5,
+} from "./trackers/trackers.constants.js";
 
 function useEditTracker(defaultTracker) {
   const [trackersState, dispatchTrackersAction] = React.useReducer(
@@ -118,7 +125,7 @@ function useEditTracker(defaultTracker) {
 
 const newDefaultTracker = () => ({
   id: uuidv4(),
-  category: "Défaut",
+  category: TRACKER_CATEGORY_5,
   starttime: getDateTimeForPicker(),
   endtime: "",
   name: "",
@@ -230,10 +237,11 @@ const TrackerEditForm = ({
               value={tracker.category}
               onChange={handleTrackerCategory}
             >
-              <option value="Sport">Sport</option>
-              <option value="Code">Code</option>
-              <option value="Perso">Perso</option>
-              <option value="Défaut">Défaut</option>
+              <option value={TRACKER_CATEGORY_1}>{TRACKER_CATEGORY_1}</option>
+              <option value={TRACKER_CATEGORY_2}>{TRACKER_CATEGORY_2}</option>
+              <option value={TRACKER_CATEGORY_3}>{TRACKER_CATEGORY_3}</option>
+              <option value={TRACKER_CATEGORY_4}>{TRACKER_CATEGORY_4}</option>
+              <option value={TRACKER_CATEGORY_5}>{TRACKER_CATEGORY_5}</option>
             </select>
           </label>
 
