@@ -5,7 +5,7 @@ import * as React from "react";
 import { FilterTrackers } from "./FilterTrackers";
 import { TrackersTable } from "./TrackersTable";
 import { TrackerEditForm } from "./TrackerEditForm";
-import db from "../app/data.js";
+import db from "../data/data.js";
 
 function TrackersApp() {
   const [allTrackers, setAllTrackers] = React.useState(db);

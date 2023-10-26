@@ -1,5 +1,5 @@
 import * as React from "react";
-import { diffTime } from "../app/helper";
+import { diffTime } from "../utils/trackers.util.js";
 import {
   Card,
   CardContent,
@@ -98,7 +98,7 @@ const TrackerRow = ({ tracker, selectedId, onSelected }) => {
                 </DialogTrigger>
                 <DialogContent>
                   <DialogTitle className="mt-10 text-purple-400">
-                    Modification du Tracker
+                    Modification du Tracker {tracker.id}
                   </DialogTitle>
                   <Separator className="my-2" />
                   <DialogDescription>
@@ -162,7 +162,7 @@ const TrackerRow = ({ tracker, selectedId, onSelected }) => {
                 </DialogTrigger>
                 <DialogContent>
                   <DialogTitle className="mt-10 text-purple-400">
-                    Suppression du Tracker
+                    Suppression du Tracker {tracker.id}
                   </DialogTitle>
                   <Separator className="my-2" />
                   <DialogDescription>

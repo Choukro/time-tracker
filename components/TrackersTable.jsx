@@ -1,5 +1,5 @@
 import * as React from "react";
-import { groupBy } from "../app/helper";
+import { groupBy } from "../utils/trackers.util.js";
 import { TrackerCategory } from "./TrackerCategory";
 import { TrackerRow } from "./TrackerRow";
 

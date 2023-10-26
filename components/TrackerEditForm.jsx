@@ -1,8 +1,8 @@
 import * as React from "react";
 import { v4 as uuidv4 } from "uuid";
-import { getDateTimeForPicker } from "../app/helper";
+// import { getDateTimeForPicker } from "../utils/trackers.util.js";
 import "./styles/TrackerEditForm.css";
-import trackerReducer from "./Trackers/trackers.reducer.js";
+import trackerReducer from "./trackers/trackers.reducer.js";
 import {
   TRACKER_SET_TRACKER_ACTION,
   TRACKER_NEW_ACTION,
@@ -11,7 +11,7 @@ import {
   TRACKER_UPDATE_ACTION,
   TRACKER_DELETE_ACTION,
   TRACKER_FAIL_ACTION,
-} from "./Trackers/trackers.reducer.js";
+} from "./trackers/trackers.reducer.js";
 
 function useEditTracker(defaultTracker) {
   const [trackersState, dispatchTrackersAction] = React.useReducer(
@@ -78,7 +78,7 @@ function useEditTracker(defaultTracker) {
 
   const deleteTracker = () => {
     try {
-      dispatchTrackersAction({ type: TRACKER_DELETE_ACTION });
+      dispatchTrackersAction({ type: TRACKER_DELETE_ACTION, payload: tracker });
     } catch (error) {
       dispatchTrackersAction({
         type: TRACKER_FAIL_ACTION,
@@ -119,7 +119,7 @@ function useEditTracker(defaultTracker) {
 const newDefaultTracker = () => ({
   id: uuidv4(),
   category: "Défaut",
-  starttime: getDateTimeForPicker(),
+  starttime: "", // starttime: getDateTimeForPicker(),
   endtime: "",
   name: "",
 });

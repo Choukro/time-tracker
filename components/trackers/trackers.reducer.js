@@ -57,11 +57,11 @@ const trackerReducer = (state, action) => {
       };
     case "tracker/fail":
       return {
+        ...state,
         status: "fail",
-        tracker: null,
         activeButtons: { btnSave: true, btnUp: true, btnDel: true },
         activeInput: false,
-        error: action.error,
+        error: action.payload,
       };
     default:
       throw new Error("Action non supportée");
