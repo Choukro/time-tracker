@@ -1,5 +1,5 @@
 import * as React from "react";
-import { diffTime } from "../utils/trackers.util.js";
+import { diffTime, getHourAsString } from "../utils/trackers.util.js";
 import {
   Card,
   CardContent,
@@ -37,13 +37,9 @@ import {
 import { Button } from "./ui/button.jsx";
 
 const TrackerRow = ({ tracker, selectedId, onSelected }) => {
-  const starttime = new Date(tracker?.starttime)
-    .toLocaleString()
-    .substring(11, tracker.starttime.length);
+  const starttime = getHourAsString(tracker?.starttime);
   const endtime = tracker?.endtime
-    ? new Date(tracker?.endtime)
-        .toLocaleString()
-        .substring(11, tracker.endtime.length)
+    ? getHourAsString(tracker?.endtime)
     : "en cours ...";
 
   const [duration, setDuration] = React.useState(

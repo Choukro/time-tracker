@@ -1,23 +1,37 @@
 import * as React from "react";
-import { groupBy } from "../utils/trackers.util.js";
+import {
+  groupBy,
+  getDateAsString,
+  sortObjectKeysAscendingOrder,
+  sortObjectKeysDescendingOrder,
+} from "../utils/trackers.util.js";
 import { TrackerCategory } from "./TrackerCategory";
 import { TrackerRow } from "./TrackerRow";
 
 const TrackersTable = ({ trackers, selectedTracker, onSelectedTracker }) => {
   const rows = [];
-  let lastCategory = "";
-
-  const trackersParCategory = groupBy(trackers, "category");
-  Object.keys(trackersParCategory).forEach((category) => {
-    trackersParCategory[category].forEach((tracker) => {
-      if (tracker.category !== lastCategory) {
+  let lastField = "";
+  let fieldSelected = "starttime";
+  const trackersByField = groupBy(trackers, fieldSelected);
+  const sortedTrackersByField =
+    fieldSelected === "starttime"
+      ? sortObjectKeysDescendingOrder(trackersByField)
+      : sortObjectKeysAscendingOrder(trackersByField);
+  Object.keys(sortedTrackersByField).forEach((field) => {
+    sortedTrackersByField[field].forEach((tracker) => {
+      if (tracker[fieldSelected] !== lastField) {
         rows.push(
           <TrackerCategory
-            key={category}
-            category={tracker.category}
+            key={field}
+            field={
+              fieldSelected === "starttime"
+                ? getDateAsString(tracker[fieldSelected])
+                : tracker[fieldSelected]
+            }
           ></TrackerCategory>
         );
       }
+
       rows.push(
         <TrackerRow
           key={tracker.id}
@@ -26,7 +40,7 @@ const TrackersTable = ({ trackers, selectedTracker, onSelectedTracker }) => {
           onSelected={onSelectedTracker}
         ></TrackerRow>
       );
-      lastCategory = tracker.category;
+      lastField = tracker[fieldSelected];
     });
   });
 
