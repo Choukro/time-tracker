@@ -10,11 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import {
-  CounterClockwiseClockIcon,
-  Pencil1Icon,
-  TrashIcon,
-} from "@radix-ui/react-icons";
+import { Hourglass, Pencil, Trash2 } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -68,132 +64,132 @@ const TrackerRow = ({ tracker, selectedId, onSelected }) => {
   };
 
   const selected =
-    tracker.id === selectedId ? "bg-purple-400" : "hover:bg-purple-200";
+    tracker.id === selectedId
+      ? "flex justify-between flex-row bg-purple-400"
+      : "flex justify-between flex-row hover:bg-purple-200";
   return (
     <li key={tracker.id} className="cursor-pointer">
       <Card className={selected} onClick={handleClick}>
         <CardHeader className="flex flex-row gap-4">
-          <div>
-            <Avatar>
-              <AvatarFallback>{tracker.category[0]}</AvatarFallback>
-            </Avatar>
-          </div>
-          <div className="flex flex-col gap-2 text-left w-2/3">
+          <Avatar className="my-auto">
+            <AvatarFallback>{tracker.category[0]}</AvatarFallback>
+          </Avatar>
+          <div className="flex justify-around flex-col text-left !mt-0">
             <CardTitle>{tracker.name}</CardTitle>
-            <div className="flex flex-row gap-2">
+            <div className="flex justify-between flex-row gap-2">
               <Badge>{tracker.category}</Badge>
-              <CardDescription className="text-left">
+              <CardDescription>
                 {starttime} - {endtime}
               </CardDescription>
             </div>
           </div>
-          <div className="w-1/3">
-            <CardContent className="flex flex-col gap-2 p-1">
-              <CounterClockwiseClockIcon className="ml-auto" />
-              <p className="font-bold dark:text-white text-right">{duration}</p>
-            </CardContent>
-          </div>
-          <div>
-            <CardFooter className="flex flex-col gap-1 pb-0 pr-0">
-              <Dialog>
-                <DialogTrigger className="rounded p-1 hover:bg-pink-300">
-                  <Pencil1Icon />
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogTitle className="mt-10 text-purple-400">
-                    Modification du Tracker {tracker.id}
-                  </DialogTitle>
-                  <Separator className="my-2" />
-                  <DialogDescription>
-                    Vous pouvez modifier les informations du tracker ci-dessous.
-                  </DialogDescription>
-                  <Separator className="my-2" />
-                  <div className="space-y-6">
-                    <div>
-                      <Label htmlFor="trackerName">Nom du tracker : </Label>
-                      <Input
-                        type="text"
-                        id="trackerName"
-                        placeholder="Tracker name..."
-                        defaultValue={tracker.name}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="trackerDateStart">Date de début : </Label>
-                      <Input
-                        id="trackerDateStart"
-                        type="datetime-local"
-                        placeholder="Date de début..."
-                        defaultValue={tracker.starttime}
-                      ></Input>
-                    </div>
-                    <div>
-                      <Label htmlFor="trackerDateEnd">Date de fin : </Label>
-                      <Input
-                        id="trackerDateEnd"
-                        type="datetime-local"
-                        placeholder="Date de fin..."
-                        defaultValue={tracker.endtime}
-                      ></Input>
-                    </div>
-                    <div>
-                      <Label>Categorie : </Label>
-                      <Select>
-                        <SelectTrigger className="w-[180px]">
-                          <SelectValue placeholder={tracker.category} />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value={TRACKER_CATEGORY_1}>
-                            {TRACKER_CATEGORY_1}
-                          </SelectItem>
-                          <SelectItem value={TRACKER_CATEGORY_2}>
-                            {TRACKER_CATEGORY_2}
-                          </SelectItem>
-                          <SelectItem value={TRACKER_CATEGORY_3}>
-                            {TRACKER_CATEGORY_3}
-                          </SelectItem>
-                          <SelectItem value={TRACKER_CATEGORY_4}>
-                            {TRACKER_CATEGORY_4}
-                          </SelectItem>
-                          <SelectItem value={TRACKER_CATEGORY_5}>
-                            {TRACKER_CATEGORY_5}
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                  <DialogFooter className="mt-8">
-                    <DialogClose asChild>
-                      <Button variant="outline">Annuler</Button>
-                    </DialogClose>
-                    <Button className="">Enregistrer</Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
-              <Dialog>
-                <DialogTrigger className="rounded p-1 hover:bg-pink-300">
-                  <TrashIcon />
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogTitle className="mt-10 text-purple-400">
-                    Suppression du Tracker {tracker.id}
-                  </DialogTitle>
-                  <Separator className="my-2" />
-                  <DialogDescription>
-                    Voulez-vous vraiment supprimez cette entrée ?
-                  </DialogDescription>
-                  <Separator className="my-2" />
-                  <DialogFooter>
-                    <DialogClose asChild>
-                      <Button variant="outline">Annuler</Button>
-                    </DialogClose>
-                    <Button variant="destructive">Supprimer</Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
-            </CardFooter>
-          </div>
         </CardHeader>
+        <CardContent className="flex flex-row gap-10 p-6">
+          <div className="flex justify-between flex-col gap-2 rounded p-1">
+            <Hourglass className="text-slate-600" />
+            <p className="font-bold dark:text-white text-slate-600 pt-3.5">
+              {duration}
+            </p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <Dialog>
+              <DialogTrigger className="rounded p-1 hover:bg-pink-300">
+                <Pencil />
+              </DialogTrigger>
+              <DialogContent>
+                <DialogTitle className="mt-10 text-purple-400">
+                  Modification du Tracker {tracker.id}
+                </DialogTitle>
+                <Separator className="my-2" />
+                <DialogDescription>
+                  Vous pouvez modifier les informations du tracker ci-dessous.
+                </DialogDescription>
+                <Separator className="my-2" />
+                <div className="space-y-6">
+                  <div>
+                    <Label htmlFor="trackerName">Nom du tracker : </Label>
+                    <Input
+                      type="text"
+                      id="trackerName"
+                      placeholder="Tracker name..."
+                      defaultValue={tracker.name}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="trackerDateStart">Date de début : </Label>
+                    <Input
+                      id="trackerDateStart"
+                      type="datetime-local"
+                      placeholder="Date de début..."
+                      defaultValue={tracker.starttime}
+                    ></Input>
+                  </div>
+                  <div>
+                    <Label htmlFor="trackerDateEnd">Date de fin : </Label>
+                    <Input
+                      id="trackerDateEnd"
+                      type="datetime-local"
+                      placeholder="Date de fin..."
+                      defaultValue={tracker.endtime}
+                    ></Input>
+                  </div>
+                  <div>
+                    <Label>Categorie : </Label>
+                    <Select>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder={tracker.category} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value={TRACKER_CATEGORY_1}>
+                          {TRACKER_CATEGORY_1}
+                        </SelectItem>
+                        <SelectItem value={TRACKER_CATEGORY_2}>
+                          {TRACKER_CATEGORY_2}
+                        </SelectItem>
+                        <SelectItem value={TRACKER_CATEGORY_3}>
+                          {TRACKER_CATEGORY_3}
+                        </SelectItem>
+                        <SelectItem value={TRACKER_CATEGORY_4}>
+                          {TRACKER_CATEGORY_4}
+                        </SelectItem>
+                        <SelectItem value={TRACKER_CATEGORY_5}>
+                          {TRACKER_CATEGORY_5}
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <DialogFooter className="mt-8">
+                  <DialogClose asChild>
+                    <Button variant="outline">Annuler</Button>
+                  </DialogClose>
+                  <Button className="">Enregistrer</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+            <Dialog>
+              <DialogTrigger className="rounded p-1 hover:bg-pink-300">
+                <Trash2 />
+              </DialogTrigger>
+              <DialogContent>
+                <DialogTitle className="mt-10 text-purple-400">
+                  Suppression du Tracker {tracker.id}
+                </DialogTitle>
+                <Separator className="my-2" />
+                <DialogDescription>
+                  Voulez-vous vraiment supprimez cette entrée ?
+                </DialogDescription>
+                <Separator className="my-2" />
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant="outline">Annuler</Button>
+                  </DialogClose>
+                  <Button variant="destructive">Supprimer</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </div>
+        </CardContent>
       </Card>
     </li>
   );
