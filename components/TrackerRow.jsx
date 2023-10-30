@@ -85,13 +85,11 @@ const TrackerRow = ({ tracker, selectedId, onSelected }) => {
           </div>
         </CardHeader>
         <CardContent className="flex flex-row gap-10 p-6">
-          <div className="flex justify-between flex-col gap-2 rounded p-1">
+          <div className="flex justify-between flex-col p-1">
             <Hourglass className="text-slate-600" />
-            <p className="font-bold dark:text-white text-slate-600 pt-3.5">
-              {duration}
-            </p>
+            <p className="text-sm	dark:text-white text-slate-600">{duration}</p>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex justify-between flex-col gap-2">
             <Dialog>
               <DialogTrigger className="rounded p-1 hover:bg-pink-300">
                 <Pencil />
