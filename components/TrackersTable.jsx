@@ -15,7 +15,7 @@ import {
 const TrackersTable = ({ trackers, selectedTracker, onSelectedTracker }) => {
   const rows = [];
   let lastField = "";
-  let fieldSelected = TRACKER_START_TIME; // TRACKER_START_TIME || TRACKER_CATEGORY
+  let fieldSelected = TRACKER_CATEGORY; // TRACKER_START_TIME || TRACKER_CATEGORY
 
   const trackersByField = groupBy(trackers, fieldSelected);
   const sortedTrackersByField =

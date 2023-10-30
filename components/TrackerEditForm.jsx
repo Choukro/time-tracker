@@ -2,16 +2,6 @@ import * as React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { getDateTimeForPicker } from "../utils/trackers.util.js";
 import "./styles/TrackerEditForm.css";
-import trackerReducer from "./trackers/trackers.reducer.js";
-import {
-  TRACKER_SET_TRACKER_ACTION,
-  TRACKER_NEW_ACTION,
-  TRACKER_EDIT_ACTION,
-  TRACKER_CREATE_ACTION,
-  TRACKER_UPDATE_ACTION,
-  TRACKER_DELETE_ACTION,
-  TRACKER_FAIL_ACTION,
-} from "./trackers/trackers.reducer.js";
 import {
   TRACKER_CATEGORY_1,
   TRACKER_CATEGORY_2,
@@ -19,109 +9,7 @@ import {
   TRACKER_CATEGORY_4,
   TRACKER_CATEGORY_5,
 } from "./trackers/trackers.constants.js";
-
-function useEditTracker(defaultTracker) {
-  const [trackersState, dispatchTrackersAction] = React.useReducer(
-    trackerReducer,
-    {
-      tracker: defaultTracker,
-      error: null,
-      status: "idle",
-      activeInput: false,
-      activeButtons: { btnSave: false, btnUp: false, btnDel: false },
-    }
-  );
-  const { tracker, error, status, activeButtons, activeInput } = trackersState;
-
-  const setTracker = (tracker) => {
-    try {
-      dispatchTrackersAction({
-        type: TRACKER_SET_TRACKER_ACTION,
-        payload: tracker,
-      });
-    } catch (error) {
-      dispatchTrackersAction({
-        type: TRACKER_FAIL_ACTION,
-        payload: error.message,
-      });
-    }
-  };
-
-  const editTracker = (tracker) => {
-    try {
-      dispatchTrackersAction({
-        type: TRACKER_EDIT_ACTION,
-        payload: tracker,
-      });
-    } catch (error) {
-      dispatchTrackersAction({
-        type: TRACKER_FAIL_ACTION,
-        payload: error.message,
-      });
-    }
-  };
-
-  const createTracker = () => {
-    try {
-      dispatchTrackersAction({ type: TRACKER_CREATE_ACTION });
-    } catch (error) {
-      dispatchTrackersAction({
-        type: TRACKER_FAIL_ACTION,
-        payload: error.message,
-      });
-    }
-  };
-
-  const updateTracker = () => {
-    try {
-      dispatchTrackersAction({ type: TRACKER_UPDATE_ACTION });
-    } catch (error) {
-      dispatchTrackersAction({
-        type: TRACKER_FAIL_ACTION,
-        payload: error.message,
-      });
-    }
-  };
-
-  const deleteTracker = () => {
-    try {
-      dispatchTrackersAction({ type: TRACKER_DELETE_ACTION, payload: tracker });
-    } catch (error) {
-      dispatchTrackersAction({
-        type: TRACKER_FAIL_ACTION,
-        payload: error.message,
-      });
-    }
-  };
-
-  const newTracker = (tracker) => {
-    try {
-      dispatchTrackersAction({
-        type: TRACKER_NEW_ACTION,
-        payload: tracker,
-      });
-    } catch (error) {
-      dispatchTrackersAction({
-        type: TRACKER_FAIL_ACTION,
-        payload: error.message,
-      });
-    }
-  };
-
-  return {
-    tracker,
-    error,
-    status,
-    activeButtons,
-    activeInput,
-    setTracker,
-    editTracker,
-    createTracker,
-    updateTracker,
-    deleteTracker,
-    newTracker,
-  };
-}
+import useEditTracker from "../hooks/useEditTracker.js";
 
 const newDefaultTracker = () => ({
   id: uuidv4(),
