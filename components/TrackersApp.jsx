@@ -2,10 +2,14 @@
 
 /* eslint-disable no-unused-vars */
 import * as React from "react";
-import { FilterTrackers } from "./FilterTrackers";
-import { TrackersTable } from "./TrackersTable";
+import { TrackersList } from "./TrackersList";
 import { TrackerEditForm } from "./TrackerEditForm";
+import { TrackersFollowUp } from "./TrackersFollowUp.jsx";
 import db from "../data/data.js";
+import {
+  trackersFinished,
+  trackersInProgress,
+} from "../utils/trackers.util.js";
 
 function TrackersApp() {
   const [allTrackers, setAllTrackers] = React.useState(db);
@@ -18,6 +22,22 @@ function TrackersApp() {
       (track) => track.name.toLowerCase().indexOf(text) !== -1
     );
     setAllTrackers(filteredTracker);
+  };
+
+  const handleAllTrackers = () => {
+    allTrackers.length < db.length
+      ? setAllTrackers(db)
+      : setAllTrackers(allTrackers);
+  };
+
+  const handleTrackersInProgress = () => {
+    const trackersOngoing = trackersInProgress(allTrackers);
+    setAllTrackers(trackersOngoing);
+  };
+
+  const handleTrackersFinished = () => {
+    const trackersCompleted = trackersFinished(allTrackers);
+    setAllTrackers(trackersCompleted);
   };
 
   const handleAddTracker = (tracker) => {
@@ -72,14 +92,20 @@ function TrackersApp() {
 
   return (
     <div>
-      <FilterTrackers onTextChange={handleTextChange} />
+      <TrackersFollowUp
+        trackers={allTrackers}
+        onTextChange={handleTextChange}
+        onAllTracker={handleAllTrackers}
+        onTrackersInProgress={handleTrackersInProgress}
+        onTrackersFinished={handleTrackersFinished}
+      />
       <TrackerEditForm
         selectedTracker={selectedTracker}
         onAddTracker={handleAddTracker}
         onUpdateTracker={handleUpdateTracker}
         onDeleteTracker={handleDeleteTracker}
       />
-      <TrackersTable
+      <TrackersList
         trackers={allTrackers}
         selectedTracker={selectedTracker}
         onSelectedTracker={setSelectedTracker}

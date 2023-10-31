@@ -2,18 +2,12 @@ import * as React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { getDateTimeForPicker } from "../utils/trackers.util.js";
 import "./styles/TrackerEditForm.css";
-import {
-  TRACKER_CATEGORY_1,
-  TRACKER_CATEGORY_2,
-  TRACKER_CATEGORY_3,
-  TRACKER_CATEGORY_4,
-  TRACKER_CATEGORY_5,
-} from "./trackers/trackers.constants.js";
+import { TRACKER_CATEGORIES } from "./trackers/trackers.constants.js";
 import useEditTracker from "../hooks/useEditTracker.js";
 
 const newDefaultTracker = () => ({
   id: uuidv4(),
-  category: TRACKER_CATEGORY_5,
+  category: TRACKER_CATEGORIES.cat5,
   starttime: getDateTimeForPicker(),
   endtime: "",
   name: "",
@@ -125,11 +119,21 @@ const TrackerEditForm = ({
               value={tracker.category}
               onChange={handleTrackerCategory}
             >
-              <option value={TRACKER_CATEGORY_1}>{TRACKER_CATEGORY_1}</option>
-              <option value={TRACKER_CATEGORY_2}>{TRACKER_CATEGORY_2}</option>
-              <option value={TRACKER_CATEGORY_3}>{TRACKER_CATEGORY_3}</option>
-              <option value={TRACKER_CATEGORY_4}>{TRACKER_CATEGORY_4}</option>
-              <option value={TRACKER_CATEGORY_5}>{TRACKER_CATEGORY_5}</option>
+              <option value={TRACKER_CATEGORIES.cat1}>
+                {TRACKER_CATEGORIES.cat1}
+              </option>
+              <option value={TRACKER_CATEGORIES.cat2}>
+                {TRACKER_CATEGORIES.cat2}
+              </option>
+              <option value={TRACKER_CATEGORIES.cat3}>
+                {TRACKER_CATEGORIES.cat3}
+              </option>
+              <option value={TRACKER_CATEGORIES.cat4}>
+                {TRACKER_CATEGORIES.cat4}
+              </option>
+              <option value={TRACKER_CATEGORIES.cat5}>
+                {TRACKER_CATEGORIES.cat5}
+              </option>
             </select>
           </label>
 

@@ -166,3 +166,20 @@ export const getDateAsString = (date) => {
     });
   }
 };
+
+/**
+ * Récupère la liste des trackers terminés
+ * @param {*} trackers Prend une liste trackers
+ * @returns Retourne une liste de trackers
+ */
+export const trackersFinished = (trackers) => {
+  return trackers.filter((item) => item.endtime !== "");
+};
+/**
+ * Récupère la liste des trackers en cours
+ * @param {*} trackers Prend une liste trackers
+ * @returns Retourne une liste de trackers
+ */
+export const trackersInProgress = (trackers) => {
+  return trackers.filter((item) => item.endtime === "");
+};

@@ -6,7 +6,6 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -31,15 +30,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "./ui/button.jsx";
-import {
-  TRACKER_CATEGORY_1,
-  TRACKER_CATEGORY_2,
-  TRACKER_CATEGORY_3,
-  TRACKER_CATEGORY_4,
-  TRACKER_CATEGORY_5,
-} from "./trackers/trackers.constants.js";
+import { TRACKER_CATEGORIES } from "./trackers/trackers.constants.js";
 
-const TrackerRow = ({ tracker, selectedId, onSelected }) => {
+const TrackerCard = ({ tracker, selectedId, onSelected }) => {
   const starttime = getHourAsString(tracker?.starttime);
   const endtime = tracker?.endtime
     ? getHourAsString(tracker?.endtime)
@@ -85,7 +78,7 @@ const TrackerRow = ({ tracker, selectedId, onSelected }) => {
           </div>
         </CardHeader>
         <CardContent className="flex flex-row gap-10 p-6">
-          <div className="flex justify-between flex-col p-1">
+          <div className="flex justify-between flex-col p-1 items-end">
             <Hourglass className="text-slate-600" />
             <p className="text-sm	dark:text-white text-slate-600">{duration}</p>
           </div>
@@ -138,20 +131,20 @@ const TrackerRow = ({ tracker, selectedId, onSelected }) => {
                         <SelectValue placeholder={tracker.category} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value={TRACKER_CATEGORY_1}>
-                          {TRACKER_CATEGORY_1}
+                        <SelectItem value={TRACKER_CATEGORIES.cat1}>
+                          {TRACKER_CATEGORIES.cat1}
                         </SelectItem>
-                        <SelectItem value={TRACKER_CATEGORY_2}>
-                          {TRACKER_CATEGORY_2}
+                        <SelectItem value={TRACKER_CATEGORIES.cat2}>
+                          {TRACKER_CATEGORIES.cat2}
                         </SelectItem>
-                        <SelectItem value={TRACKER_CATEGORY_3}>
-                          {TRACKER_CATEGORY_3}
+                        <SelectItem value={TRACKER_CATEGORIES.cat3}>
+                          {TRACKER_CATEGORIES.cat3}
                         </SelectItem>
-                        <SelectItem value={TRACKER_CATEGORY_4}>
-                          {TRACKER_CATEGORY_4}
+                        <SelectItem value={TRACKER_CATEGORIES.cat4}>
+                          {TRACKER_CATEGORIES.cat4}
                         </SelectItem>
-                        <SelectItem value={TRACKER_CATEGORY_5}>
-                          {TRACKER_CATEGORY_5}
+                        <SelectItem value={TRACKER_CATEGORIES.cat5}>
+                          {TRACKER_CATEGORIES.cat5}
                         </SelectItem>
                       </SelectContent>
                     </Select>
@@ -193,4 +186,4 @@ const TrackerRow = ({ tracker, selectedId, onSelected }) => {
   );
 };
 
-export { TrackerRow };
+export { TrackerCard };

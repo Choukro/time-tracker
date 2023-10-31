@@ -1,5 +1,5 @@
 import { TrackersApp } from "../components/TrackersApp";
-import "./styles/page.css";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Home() {
   return (
@@ -9,12 +9,11 @@ export default function Home() {
           Time Tracker
         </h1>
       </div>
-      <div className="Page">
-        <div className="Page-header"></div>
-        <div className="Page-content">
+      <Card className="text-center bg-slate-200">
+        <CardContent>
           <TrackersApp />
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </main>
   );
 }
