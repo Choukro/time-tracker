@@ -14,6 +14,7 @@ import { Button } from "./ui/button.jsx";
 
 const TrackersFollowUp = ({
   trackers,
+  trackersCount,
   onTextChange,
   onAllTracker,
   onTrackersInProgress,
@@ -24,7 +25,6 @@ const TrackersFollowUp = ({
   const handleChange = (e) => {
     onTextChange(e.target.value);
   };
-
   return (
     <Card className="m-10 bg-gradient-to-r from-[#c084fc99] to-[#f472b699]">
       <CardHeader>
@@ -39,12 +39,12 @@ const TrackersFollowUp = ({
           onClick={onTrackersFinished}
           disabled={finished.length === 0}
         >
+          <div className="p-0 text-slate-600 text-base my-auto">Terminés</div>
           <Avatar className="my-auto">
             <AvatarFallback>
               {finished.length === 0 ? "-" : finished.length}
             </AvatarFallback>
           </Avatar>
-          <div className="p-0 text-slate-600 text-base my-auto">Terminés</div>
         </Button>
         <Button
           variant="outline"
@@ -52,24 +52,28 @@ const TrackersFollowUp = ({
           onClick={onTrackersInProgress}
           disabled={inProgress.length === 0}
         >
+          <div className="p-0 text-slate-600 text-base my-auto">En cours</div>
           <Avatar className="my-auto">
             <AvatarFallback>{inProgress.length}</AvatarFallback>
           </Avatar>
-          <div className="p-0 text-slate-600 text-base my-auto">En cours</div>
         </Button>
         <Button
           variant="outline"
           className="w-[20%] h-auto flex justify-center flex-row gap-2 p-2 hover:bg-purple-200"
           onClick={onAllTracker}
         >
+          <div className="p-0 text-slate-600 text-base my-auto">
+            {trackers.length < trackersCount ? " " : "Total"}
+          </div>
           <Avatar className="my-auto">
             <AvatarFallback>
-              {trackers.length < db.length ? <RotateCcw /> : trackers.length}
+              {trackers.length < trackersCount ? (
+                <RotateCcw />
+              ) : (
+                trackers.length
+              )}
             </AvatarFallback>
           </Avatar>
-          <div className="p-0 text-slate-600 text-base my-auto">
-            {trackers.length < db.length ? " " : "Tous"}
-          </div>
         </Button>
       </CardContent>
       <CardFooter>

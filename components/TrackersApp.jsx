@@ -13,6 +13,7 @@ import {
 
 function TrackersApp() {
   const [allTrackers, setAllTrackers] = React.useState(db);
+  const [trackersCount, setTrackersCount] = React.useState(db.length);
   const [filterText, setFilterText] = React.useState("");
   const [selectedTracker, setSelectedTracker] = React.useState();
 
@@ -25,7 +26,7 @@ function TrackersApp() {
   };
 
   const handleAllTrackers = () => {
-    allTrackers.length < db.length
+    allTrackers.length < trackersCount
       ? setAllTrackers(db)
       : setAllTrackers(allTrackers);
   };
@@ -58,6 +59,7 @@ function TrackersApp() {
       return;
     }
     setAllTrackers([...allTrackers, tracker]);
+    setTrackersCount(trackersCount + 1);
   };
   const handleDeleteTracker = (tracker) => {
     if (tracker.id === "") {
@@ -65,6 +67,7 @@ function TrackersApp() {
       return;
     }
     setAllTrackers(allTrackers.filter((item) => item.id !== tracker.id));
+    setTrackersCount(trackersCount - 1);
   };
   const handleUpdateTracker = (tracker) => {
     if (tracker.id === "") {
@@ -94,6 +97,7 @@ function TrackersApp() {
     <div>
       <TrackersFollowUp
         trackers={allTrackers}
+        trackersCount={trackersCount}
         onTextChange={handleTextChange}
         onAllTracker={handleAllTrackers}
         onTrackersInProgress={handleTrackersInProgress}
