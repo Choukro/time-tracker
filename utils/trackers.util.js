@@ -183,3 +183,16 @@ export const trackersFinished = (trackers) => {
 export const trackersInProgress = (trackers) => {
   return trackers.filter((item) => item.endtime === "");
 };
+
+/**
+ * Cette fonction prend deux arguments : l'objet à vérifier et la clé à exclure.
+ * Elle retourne true si au moins une des propriétés de l'objet (à l'exception de la clé spécifiée) est une chaîne vide.
+ * @param {*} obj Objet à vérifier
+ * @param {*} excludeKey Clé à exclure
+ * @returns Booléen indiquant si au moins une des propriétés d'un objet est égale à une chaîne vide, à l'exception de la clé spécifiée
+ */
+export const hasEmptyPropertyExcludingKey = (obj, excludeKey) => {
+  return Object.entries(obj).some(
+    ([key, value]) => key !== excludeKey && value === ""
+  );
+};

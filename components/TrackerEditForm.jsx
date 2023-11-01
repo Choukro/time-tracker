@@ -1,17 +1,8 @@
 import * as React from "react";
-import { v4 as uuidv4 } from "uuid";
-import { getDateTimeForPicker } from "../utils/trackers.util.js";
 import "./styles/TrackerEditForm.css";
 import { TRACKER_CATEGORIES } from "./trackers/trackers.constants.js";
 import useEditTracker from "../hooks/useEditTracker.js";
-
-const newDefaultTracker = () => ({
-  id: uuidv4(),
-  category: TRACKER_CATEGORIES.cat5,
-  starttime: getDateTimeForPicker(),
-  endtime: "",
-  name: "",
-});
+import { newDefaultTracker } from "../components/trackers/trackers.constants.js";
 
 const TrackerEditForm = ({
   selectedTracker = { ...newDefaultTracker(), id: "" },

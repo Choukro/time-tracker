@@ -82,6 +82,7 @@ const TrackersFollowUp = ({
             type="text"
             placeholder="Recherche à l'aide du libéllé du tracker..."
             onChange={handleChange}
+            name="search"
           ></Input>
         </div>
       </CardFooter>

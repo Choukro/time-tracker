@@ -9,6 +9,7 @@ import db from "../data/data.js";
 import {
   trackersFinished,
   trackersInProgress,
+  hasEmptyPropertyExcludingKey,
 } from "../utils/trackers.util.js";
 
 function TrackersApp() {
@@ -43,50 +44,42 @@ function TrackersApp() {
 
   const handleAddTracker = (tracker) => {
     if (tracker.id === "") {
-      alert("il manque le tracker id");
+      alert(
+        "❌ Impossible d'ajouter ce nouveau tracker!\n\n💡 Essayez d'actualisez la page !"
+      );
       return;
     }
     if (tracker.name === "") {
-      alert("veuillez renseigner le nom du tracker");
+      alert("📝 Veuillez renseigner le nom du tracker");
       return;
     }
     if (tracker.starttime === "") {
-      alert("veuillez renseigner la date de début");
+      alert("📅 Veuillez renseigner la date de début");
       return;
     }
     if (tracker.category === "") {
-      alert("veuillez renseigner la categorie");
+      alert("📑 Veuillez renseigner la catégorie");
       return;
     }
     setAllTrackers([...allTrackers, tracker]);
     setTrackersCount(trackersCount + 1);
   };
+
   const handleDeleteTracker = (tracker) => {
     if (tracker.id === "") {
-      alert("il manque le tracker id");
+      // alert(
+      //   "❌ Impossible de supprimer le tracker !\n\n💡 Essayez d'actualiser la page !"
+      // );
       return;
     }
     setAllTrackers(allTrackers.filter((item) => item.id !== tracker.id));
     setTrackersCount(trackersCount - 1);
   };
-  const handleUpdateTracker = (tracker) => {
-    if (tracker.id === "") {
-      alert("il manque le tracker id");
-      return;
-    }
-    if (tracker.name === "") {
-      alert("veuillez renseigner le nom du tracker");
-      return;
-    }
-    if (tracker.starttime === "") {
-      alert("veuillez renseigner la date de début");
-      return;
-    }
-    if (tracker.category === "") {
-      alert("veuillez renseigner la categorie");
-      return;
-    }
 
+  const handleUpdateTracker = (tracker) => {
+    if (hasEmptyPropertyExcludingKey(tracker, "endtime")) {
+      return;
+    }
     let updatedList = allTrackers.map((item) =>
       item.id === tracker.id ? tracker : item
     );
@@ -111,8 +104,8 @@ function TrackersApp() {
       />
       <TrackersList
         trackers={allTrackers}
-        selectedTracker={selectedTracker}
-        onSelectedTracker={setSelectedTracker}
+        onUpdateTracker={handleUpdateTracker}
+        onDeleteTracker={handleDeleteTracker}
       />
     </div>
   );
