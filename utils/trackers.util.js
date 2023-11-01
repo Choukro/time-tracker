@@ -215,9 +215,8 @@ export const isFunction = (functionToCheck) => {
  * @param {*} trackers Prend une liste trackers
  * @returns Retourne les données du fichier ou les données du localStorage
  */
-
-export const getTrackersFromLocalStorage = () => {
-  const item = localStorage.getItem("trackers");
+export const getTrackersFromLocalStorage = (key, data) => {
+  const item = localStorage.getItem(key);
   if (item) {
     // Si l'élément "trackers" existe dans le localStorage, retournez-le
     return JSON.parse(item);

@@ -25,7 +25,7 @@ function TrackersApp() {
   const handleTextChange = (text) => {
     setFilterText(text);
     const filteredTracker = allTrackers.filter(
-      (track) => track.name.toLowerCase().indexOf(text) !== -1
+      (track) => track.name.toLowerCase().indexOf(text.toLowerCase()) !== -1
     );
     setSelectedTrackers(filteredTracker);
     setSearchBy(true);
@@ -33,7 +33,7 @@ function TrackersApp() {
 
   const handleAllTrackers = () => {
     allTrackers.length < trackersCount
-      ? setAllTrackers(getTrackersFromLocalStorage())
+      ? setAllTrackers(getTrackersFromLocalStorage("trackers", db))
       : setSelectedTrackers(allTrackers);
   };
 
@@ -106,12 +106,7 @@ function TrackersApp() {
         onTrackersInProgress={handleTrackersInProgress}
         onTrackersFinished={handleTrackersFinished}
       />
-      <TrackerEditForm
-        selectedTracker={selectedTracker}
-        onAddTracker={handleAddTracker}
-        onUpdateTracker={handleUpdateTracker}
-        onDeleteTracker={handleDeleteTracker}
-      />
+      <TrackerEditForm onAddTracker={handleAddTracker} />
       <TrackersList
         trackers={searchBy ? selectedTrackers : allTrackers}
         onUpdateTracker={handleUpdateTracker}
