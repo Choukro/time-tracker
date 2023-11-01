@@ -196,3 +196,32 @@ export const hasEmptyPropertyExcludingKey = (obj, excludeKey) => {
     ([key, value]) => key !== excludeKey && value === ""
   );
 };
+
+/**
+ * isFunction est utilisée pour vérifier si une variable est une fonction
+ * @param  {Function}  functionToCheck  La variable à vérifier
+ * @returns {Boolean} True si la variable est une fonction
+ */
+export const isFunction = (functionToCheck) => {
+  return (
+    functionToCheck && {}.toString.call(functionToCheck) === "[object Function]"
+  );
+};
+
+/**
+ * Cette fonction utilise localStorage.getItem('trackers') pour obtenir l'élément "trackers" du localStorage.
+ * Si cet élément existe, il est renvoyé après avoir été converti en objet JavaScript avec JSON.parse().
+ * Sinon, les données du fichier de données sont renvoyées.
+ * @param {*} trackers Prend une liste trackers
+ * @returns Retourne les données du fichier ou les données du localStorage
+ */
+
+export const getTrackersFromLocalStorage = () => {
+  const item = localStorage.getItem("trackers");
+  if (item) {
+    // Si l'élément "trackers" existe dans le localStorage, retournez-le
+    return JSON.parse(item);
+  }
+  // Si l'élément "trackers" n'existe pas dans le localStorage, retournez les données du fichier
+  return data;
+};

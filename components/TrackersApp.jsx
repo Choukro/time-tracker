@@ -10,36 +10,43 @@ import {
   trackersFinished,
   trackersInProgress,
   hasEmptyPropertyExcludingKey,
+  getTrackersFromLocalStorage,
 } from "../utils/trackers.util.js";
+import useLocalStorage from "@/hooks/useLocalStorage.js";
 
 function TrackersApp() {
-  const [allTrackers, setAllTrackers] = React.useState(db);
-  const [trackersCount, setTrackersCount] = React.useState(db.length);
+  const [allTrackers, setAllTrackers] = useLocalStorage("trackers", db);
+  const [trackersCount, setTrackersCount] = React.useState(allTrackers.length);
   const [filterText, setFilterText] = React.useState("");
+  const [searchBy, setSearchBy] = React.useState(false);
+  const [selectedTrackers, setSelectedTrackers] = React.useState(allTrackers);
   const [selectedTracker, setSelectedTracker] = React.useState();
 
   const handleTextChange = (text) => {
     setFilterText(text);
-    const filteredTracker = db.filter(
+    const filteredTracker = allTrackers.filter(
       (track) => track.name.toLowerCase().indexOf(text) !== -1
     );
-    setAllTrackers(filteredTracker);
+    setSelectedTrackers(filteredTracker);
+    setSearchBy(true);
   };
 
   const handleAllTrackers = () => {
     allTrackers.length < trackersCount
-      ? setAllTrackers(db)
-      : setAllTrackers(allTrackers);
+      ? setAllTrackers(getTrackersFromLocalStorage())
+      : setSelectedTrackers(allTrackers);
   };
 
   const handleTrackersInProgress = () => {
     const trackersOngoing = trackersInProgress(allTrackers);
-    setAllTrackers(trackersOngoing);
+    setSelectedTrackers(trackersOngoing);
+    setSearchBy(true);
   };
 
   const handleTrackersFinished = () => {
     const trackersCompleted = trackersFinished(allTrackers);
-    setAllTrackers(trackersCompleted);
+    setSelectedTrackers(trackersCompleted);
+    setSearchBy(true);
   };
 
   const handleAddTracker = (tracker) => {
@@ -63,6 +70,7 @@ function TrackersApp() {
     }
     setAllTrackers([...allTrackers, tracker]);
     setTrackersCount(trackersCount + 1);
+    setSearchBy(false);
   };
 
   const handleDeleteTracker = (tracker) => {
@@ -74,6 +82,7 @@ function TrackersApp() {
     }
     setAllTrackers(allTrackers.filter((item) => item.id !== tracker.id));
     setTrackersCount(trackersCount - 1);
+    setSearchBy(false);
   };
 
   const handleUpdateTracker = (tracker) => {
@@ -84,12 +93,13 @@ function TrackersApp() {
       item.id === tracker.id ? tracker : item
     );
     setAllTrackers(updatedList);
+    setSearchBy(false);
   };
 
   return (
     <div>
       <TrackersFollowUp
-        trackers={allTrackers}
+        trackers={searchBy ? selectedTrackers : allTrackers}
         trackersCount={trackersCount}
         onTextChange={handleTextChange}
         onAllTracker={handleAllTrackers}
@@ -103,7 +113,7 @@ function TrackersApp() {
         onDeleteTracker={handleDeleteTracker}
       />
       <TrackersList
-        trackers={allTrackers}
+        trackers={searchBy ? selectedTrackers : allTrackers}
         onUpdateTracker={handleUpdateTracker}
         onDeleteTracker={handleDeleteTracker}
       />
