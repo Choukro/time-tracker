@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Input } from "./ui/input.jsx";
 import { RotateCcw } from "lucide-react";
 import { Button } from "./ui/button.jsx";
+import { NewTracker } from "./NewTracker.jsx";
 
 const TrackersFollowUp = ({
   trackers,
@@ -18,6 +19,7 @@ const TrackersFollowUp = ({
   onAllTracker,
   onTrackersInProgress,
   onTrackersFinished,
+  onAddTracker,
 }) => {
   const finished = trackersFinished(trackers);
   const inProgress = trackersInProgress(trackers);
@@ -25,11 +27,12 @@ const TrackersFollowUp = ({
     onTextChange(e.target.value);
   };
   return (
-    <Card className="md:m-10 mt-5 bg-gradient-to-r from-[#c084fc99] to-[#f472b699]">
+    <Card className="md:m-10 mt-5 bg-gradient-to-r from-custom1 to-custom2 relative">
       <CardHeader>
-        <CardTitle className="md:text-3xl text-2xl font-bold dark:text-white py-4">
-          Suivi & Recherche
+        <CardTitle className="md:text-3xl text-2xl font-bold dark:text-white sm:py-8 pt-8">
+          Ajout & Gestion
         </CardTitle>
+        <NewTracker onAddTracker={onAddTracker} />
       </CardHeader>
       <CardContent className="flex justify-around flex-col gap-3 md:flex-row mb-5">
         <Button

@@ -70,12 +70,12 @@ const TrackersList = ({ trackers, onUpdateTracker, onDeleteTracker }) => {
 
   return (
     <>
-      <Card className="md:m-10 mt-5 bg-gradient-to-r from-[#c084fc99] to-[#f472b699]">
-        <CardHeader className="flex flex-col">
-          <CardTitle className="md:text-3xl text-2xl font-bold dark:text-white py-4">
+      <Card className="md:m-10 mt-5 bg-gradient-to-r from-custom1 to-custom2">
+        <CardHeader className="flex sm:flex-row flex-col justify-center sm:gap-4">
+          <CardTitle className="md:text-3xl text-2xl font-bold dark:text-white sm:py-8">
             Liste filtrée par
           </CardTitle>
-          <div className="mx-auto">
+          <div className="sm:!my-auto">
             <RadioGroup defaultValue="date">
               <div className="flex items-center space-x-2">
                 <RadioGroupItem
@@ -97,7 +97,7 @@ const TrackersList = ({ trackers, onUpdateTracker, onDeleteTracker }) => {
           </div>
         </CardHeader>
         <CardContent>
-          <ul className="flex flex-col gap-4">{rows}</ul>
+          <ul className="xl:w-[60%] lg:mx-auto flex flex-col gap-4">{rows}</ul>
         </CardContent>
       </Card>
       <Toaster />

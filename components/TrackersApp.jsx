@@ -3,7 +3,6 @@
 /* eslint-disable no-unused-vars */
 import * as React from "react";
 import { TrackersList } from "./TrackersList";
-import { TrackerEditForm } from "./TrackerEditForm";
 import { TrackersFollowUp } from "./TrackersFollowUp.jsx";
 import db from "../data/data.js";
 import {
@@ -17,10 +16,9 @@ import useLocalStorage from "@/hooks/useLocalStorage.js";
 function TrackersApp() {
   const [allTrackers, setAllTrackers] = useLocalStorage("trackers", db);
   const [trackersCount, setTrackersCount] = React.useState(allTrackers.length);
-  const [filterText, setFilterText] = React.useState("");
+  const [, setFilterText] = React.useState("");
   const [searchBy, setSearchBy] = React.useState(false);
   const [selectedTrackers, setSelectedTrackers] = React.useState(allTrackers);
-  const [selectedTracker, setSelectedTracker] = React.useState();
 
   const handleTextChange = (text) => {
     setFilterText(text);
@@ -50,22 +48,7 @@ function TrackersApp() {
   };
 
   const handleAddTracker = (tracker) => {
-    if (tracker.id === "") {
-      alert(
-        "❌ Impossible d'ajouter ce nouveau tracker!\n\n💡 Essayez d'actualisez la page !"
-      );
-      return;
-    }
-    if (tracker.name === "") {
-      alert("📝 Veuillez renseigner le nom du tracker");
-      return;
-    }
-    if (tracker.starttime === "") {
-      alert("📅 Veuillez renseigner la date de début");
-      return;
-    }
-    if (tracker.category === "") {
-      alert("📑 Veuillez renseigner la catégorie");
+    if (hasEmptyPropertyExcludingKey(tracker, "endtime")) {
       return;
     }
     setAllTrackers([...allTrackers, tracker]);
@@ -105,8 +88,8 @@ function TrackersApp() {
         onAllTracker={handleAllTrackers}
         onTrackersInProgress={handleTrackersInProgress}
         onTrackersFinished={handleTrackersFinished}
+        onAddTracker={handleAddTracker}
       />
-      <TrackerEditForm onAddTracker={handleAddTracker} />
       <TrackersList
         trackers={searchBy ? selectedTrackers : allTrackers}
         onUpdateTracker={handleUpdateTracker}
