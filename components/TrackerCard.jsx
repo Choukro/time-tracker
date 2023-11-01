@@ -50,14 +50,14 @@ const TrackerCard = ({ tracker, onUpdateTracker, onDeleteTracker }) => {
 
   return (
     <li key={tracker.id} className="cursor-pointer">
-      <Card className="flex justify-between flex-row hover:bg-purple-200">
-        <CardHeader className="flex flex-row gap-4">
+      <Card className="flex justify-between md:flex-row items-center flex-col hover:bg-purple-200 relative">
+        <CardHeader className="flex md:flex-row items-center flex-col gap-4">
           <Avatar className="my-auto">
             <AvatarFallback>{tracker.category[0]}</AvatarFallback>
           </Avatar>
-          <div className="flex justify-around flex-col text-left !mt-0">
+          <div className="flex md:text-left justify-around flex-col gap-4 text-center !mt-0">
             <CardTitle>{tracker.name}</CardTitle>
-            <div className="flex justify-start flex-row gap-4">
+            <div className="flex items-center justify-start md:flex-row flex-col gap-4">
               <Badge>{tracker.category}</Badge>
               <CardDescription>
                 {starttime} - {endtime}
@@ -65,12 +65,12 @@ const TrackerCard = ({ tracker, onUpdateTracker, onDeleteTracker }) => {
             </div>
           </div>
         </CardHeader>
-        <CardContent className="flex flex-row gap-10 p-6">
-          <div className="flex justify-between flex-col p-1 items-end">
+        <CardContent className="flex md:flex-row flex-col md:gap-10 md:p-6">
+          <div className="flex justify-between md:flex-col flex-row gap-6 p-1 items-end">
             <Hourglass className="text-slate-600" />
             <p className="text-sm	dark:text-white text-slate-600">{duration}</p>
           </div>
-          <div className="flex justify-between flex-col gap-2">
+          <div className="w-full flex justify-between md:flex-col flex-row gap-2 absolute right-0 top-0 mt-1 px-2	 md:relative md:mt-0 md:p-0 md:w-auto">
             <Dialog open={openDialogEdit} onOpenChange={setOpenDialogEdit}>
               <DialogTrigger className="rounded p-1 hover:bg-pink-300">
                 <Pencil />

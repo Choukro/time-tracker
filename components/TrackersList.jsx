@@ -70,9 +70,9 @@ const TrackersList = ({ trackers, onUpdateTracker, onDeleteTracker }) => {
 
   return (
     <>
-      <Card className="m-10 bg-gradient-to-r from-[#c084fc99] to-[#f472b699]">
+      <Card className="md:m-10 mt-5 bg-gradient-to-r from-[#c084fc99] to-[#f472b699]">
         <CardHeader className="flex flex-col">
-          <CardTitle className="text-3xl font-bold dark:text-white py-4">
+          <CardTitle className="md:text-3xl text-2xl font-bold dark:text-white py-4">
             Liste filtrée par
           </CardTitle>
           <div className="mx-auto">
