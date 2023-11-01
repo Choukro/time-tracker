@@ -8,7 +8,6 @@ import {
 import { trackersFinished, trackersInProgress } from "@/utils/trackers.util.js";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Input } from "./ui/input.jsx";
-import db from "../data/data.js";
 import { RotateCcw } from "lucide-react";
 import { Button } from "./ui/button.jsx";
 
