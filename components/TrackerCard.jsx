@@ -13,12 +13,13 @@ import { Hourglass, Pencil, Trash2 } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { UpdateTrackerForm } from "./UpdateTrackerForm.jsx";
 import { DeleteTrackerForm } from "./DeleteTrackerForm.jsx";
+import { MESSAGE } from "./trackers/trackers.constants.js";
 
 const TrackerCard = ({ tracker, onUpdateTracker, onDeleteTracker }) => {
   const starttime = getHourAsString(tracker?.starttime);
   const endtime = tracker?.endtime
     ? getHourAsString(tracker?.endtime)
-    : "en cours ...";
+    : MESSAGE.inProgress;
 
   const [duration, setDuration] = React.useState(
     diffTime(tracker?.starttime, tracker?.endtime)
@@ -34,16 +35,6 @@ const TrackerCard = ({ tracker, onUpdateTracker, onDeleteTracker }) => {
       clearTimeout(timerID);
     };
   }, [refresh, duration]);
-
-  // React.useEffect(() => {
-  //   const refresh = () => {
-  //     setDuration(diffTime(tracker?.starttime, tracker?.endtime));
-  //   };
-  //   const timerID = setTimeout(() => refresh(), 1000);
-  //   return () => {
-  //     clearTimeout(timerID);
-  //   };
-  // }, [tracker.endtime, tracker.starttime, duration]);
 
   const [openDialogEdit, setOpenDialogEdit] = React.useState(false);
   const [openDialogDelete, setOpenDialogDelete] = React.useState(false);

@@ -1,6 +1,6 @@
 import { useToast } from "@/components/ui/use-toast";
 import { hasEmptyPropertyExcludingKey } from "../utils/trackers.util.js";
-import { TRACKER_CATEGORIES } from "./trackers/trackers.constants.js";
+import { MESSAGE, TRACKER_CATEGORIES } from "./trackers/trackers.constants.js";
 import useEditTracker from "@/hooks/useEditTracker";
 import {
   DialogDescription,
@@ -36,11 +36,11 @@ const UpdateTrackerForm = ({ tracker, onUpdateTracker, afterSave }) => {
     error
       ? toast({
           variant: "destructive",
-          title: "⚠️ Impossible de mettre à jour le tracker !",
-          description: "💡 Essayez d'actualiser la page !",
+          title: MESSAGE.error,
+          description: "⚠️ Le tracker n'a pas été mis à jour !",
         })
       : toast({
-          description: " 🎉 Tracker mis à jour avec succès !",
+          description: MESSAGE.update,
         });
   };
 

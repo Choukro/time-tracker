@@ -10,10 +10,14 @@ import {
   getTrackersFromLocalStorage,
 } from "../utils/trackers.util.js";
 import useLocalStorage from "@/hooks/useLocalStorage.js";
+import {
+  END_TIME,
+  KEY_LOCALSTORAGE,
+} from "../components/trackers/trackers.constants.js";
 
 function TrackersApp() {
   const [allTrackers, setAllTrackers, sizeTrackers, isLoading] =
-    useLocalStorage("trackers", db);
+    useLocalStorage(KEY_LOCALSTORAGE, db);
   const [, setFilterText] = React.useState("");
   const [searchBy, setSearchBy] = React.useState(false);
   const [selectedTrackers, setSelectedTrackers] = React.useState(allTrackers);
@@ -29,7 +33,7 @@ function TrackersApp() {
 
   const handleAllTrackers = () => {
     allTrackers.length < sizeTrackers
-      ? setAllTrackers(getTrackersFromLocalStorage("trackers", db))
+      ? setAllTrackers(getTrackersFromLocalStorage(KEY_LOCALSTORAGE, db))
       : setSelectedTrackers(allTrackers);
   };
 
@@ -46,7 +50,7 @@ function TrackersApp() {
   };
 
   const handleAddTracker = (tracker) => {
-    if (hasEmptyPropertyExcludingKey(tracker, "endtime")) {
+    if (hasEmptyPropertyExcludingKey(tracker, END_TIME)) {
       return;
     }
     setAllTrackers([...allTrackers, tracker]);
@@ -55,9 +59,6 @@ function TrackersApp() {
 
   const handleDeleteTracker = (tracker) => {
     if (tracker.id === "") {
-      // alert(
-      //   "❌ Impossible de supprimer le tracker !\n\n💡 Essayez d'actualiser la page !"
-      // );
       return;
     }
     setAllTrackers(allTrackers.filter((item) => item.id !== tracker.id));
@@ -65,7 +66,7 @@ function TrackersApp() {
   };
 
   const handleUpdateTracker = (tracker) => {
-    if (hasEmptyPropertyExcludingKey(tracker, "endtime")) {
+    if (hasEmptyPropertyExcludingKey(tracker, END_TIME)) {
       return;
     }
     let updatedList = allTrackers.map((item) =>

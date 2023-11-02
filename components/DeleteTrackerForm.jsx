@@ -7,7 +7,10 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Button } from "./ui/button.jsx";
 import useEditTracker from "../hooks/useEditTracker.js";
-import { newDefaultTracker } from "../components/trackers/trackers.constants.js";
+import {
+  MESSAGE,
+  newDefaultTracker,
+} from "../components/trackers/trackers.constants.js";
 import { useToast } from "@/components/ui/use-toast";
 
 const DeleteTrackerForm = ({ tracker, onDeleteTracker, afterDelete }) => {
@@ -22,11 +25,11 @@ const DeleteTrackerForm = ({ tracker, onDeleteTracker, afterDelete }) => {
     error
       ? toast({
           variant: "destructive",
-          title: "⚠️ Impossible de supprimer le tracker !",
-          description: "💡 Essayez d'actualiser la page !",
+          title: MESSAGE.error,
+          description: "⚠️ Le tracker n'a pas été supprimé !",
         })
       : toast({
-          description: " 🎉 Tracker supprimé avec succès !",
+          description: MESSAGE.delete,
         });
   };
   return (

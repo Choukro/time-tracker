@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import useEditTracker from "@/hooks/useEditTracker";
-import { TRACKER_CATEGORIES } from "./trackers/trackers.constants.js";
+import { MESSAGE, TRACKER_CATEGORIES } from "./trackers/trackers.constants.js";
 import {
   Select,
   SelectContent,
@@ -32,7 +32,7 @@ const NewTrackerForm = ({ onAddTracker, afterAdd }) => {
     createTracker();
     afterAdd();
     toast({
-      description: " 🎉 Nouveau tracker ajouté avec succès !",
+      description: MESSAGE.add,
     });
   };
 
