@@ -1,5 +1,3 @@
-"use client";
-
 /* eslint-disable no-unused-vars */
 import * as React from "react";
 import { TrackersList } from "./TrackersList";
@@ -14,8 +12,8 @@ import {
 import useLocalStorage from "@/hooks/useLocalStorage.js";
 
 function TrackersApp() {
-  const [allTrackers, setAllTrackers] = useLocalStorage("trackers", db);
-  const [trackersCount, setTrackersCount] = React.useState(allTrackers.length);
+  const [allTrackers, setAllTrackers, sizeTrackers, isLoading] =
+    useLocalStorage("trackers", db);
   const [, setFilterText] = React.useState("");
   const [searchBy, setSearchBy] = React.useState(false);
   const [selectedTrackers, setSelectedTrackers] = React.useState(allTrackers);
@@ -30,7 +28,7 @@ function TrackersApp() {
   };
 
   const handleAllTrackers = () => {
-    allTrackers.length < trackersCount
+    allTrackers.length < sizeTrackers
       ? setAllTrackers(getTrackersFromLocalStorage("trackers", db))
       : setSelectedTrackers(allTrackers);
   };
@@ -52,7 +50,6 @@ function TrackersApp() {
       return;
     }
     setAllTrackers([...allTrackers, tracker]);
-    setTrackersCount(trackersCount + 1);
     setSearchBy(false);
   };
 
@@ -64,7 +61,6 @@ function TrackersApp() {
       return;
     }
     setAllTrackers(allTrackers.filter((item) => item.id !== tracker.id));
-    setTrackersCount(trackersCount - 1);
     setSearchBy(false);
   };
 
@@ -80,22 +76,31 @@ function TrackersApp() {
   };
 
   return (
-    <div>
-      <TrackersFollowUp
-        trackers={searchBy ? selectedTrackers : allTrackers}
-        trackersCount={trackersCount}
-        onTextChange={handleTextChange}
-        onAllTracker={handleAllTrackers}
-        onTrackersInProgress={handleTrackersInProgress}
-        onTrackersFinished={handleTrackersFinished}
-        onAddTracker={handleAddTracker}
-      />
-      <TrackersList
-        trackers={searchBy ? selectedTrackers : allTrackers}
-        onUpdateTracker={handleUpdateTracker}
-        onDeleteTracker={handleDeleteTracker}
-      />
-    </div>
+    <>
+      {isLoading && (
+        <div className="flex justify-center items-center h-screen">
+          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
+        </div>
+      )}
+      {!isLoading && (
+        <div>
+          <TrackersFollowUp
+            trackers={searchBy ? selectedTrackers : allTrackers}
+            trackersCount={sizeTrackers}
+            onTextChange={handleTextChange}
+            onAllTracker={handleAllTrackers}
+            onTrackersInProgress={handleTrackersInProgress}
+            onTrackersFinished={handleTrackersFinished}
+            onAddTracker={handleAddTracker}
+          />
+          <TrackersList
+            trackers={searchBy ? selectedTrackers : allTrackers}
+            onUpdateTracker={handleUpdateTracker}
+            onDeleteTracker={handleDeleteTracker}
+          />
+        </div>
+      )}
+    </>
   );
 }
 export { TrackersApp };

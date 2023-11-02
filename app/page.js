@@ -1,5 +1,7 @@
+"use client";
+
 import { TrackersApp } from "../components/TrackersApp";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Home() {
   return (

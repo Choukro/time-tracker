@@ -12,8 +12,8 @@ const NewTracker = ({ onAddTracker }) => {
     <div className="absolute sm:top-1 top-0 sm:right-3 right-[40%]">
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
         <DialogTrigger asChild>
-          <Button>
-            <PlusSquare className="" />
+          <Button className="hover:bg-slate-500 sm:hover:p-6">
+            <PlusSquare />
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">

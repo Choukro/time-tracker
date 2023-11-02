@@ -2,45 +2,38 @@ import * as React from "react";
 import { isFunction } from "../utils/trackers.util.js";
 
 const useLocalStorage = (key, initialValue) => {
-  const [storedValue, setStoredValue] = React.useState(() => {
-    const item = window.localStorage.getItem(key);
-    return item ? JSON.parse(item) : initialValue;
-  });
+  const [storedValue, setStoredValue] = React.useState(initialValue);
+  const [length, setLength] = React.useState(initialValue.length);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const item = window.localStorage.getItem(key);
+      const storedValue = item ? JSON.parse(item) : initialValue;
+      setStoredValue(storedValue);
+      const len = Array.isArray(storedValue)
+        ? storedValue.length
+        : initialValue.length;
+      setLength(len);
+      setLoading(false);
+    }
+  }, [key, initialValue]);
+
   const setValue = React.useCallback(
     (value) => {
-      setStoredValue(value);
-      window.localStorage.setItem(
-        key,
-        JSON.stringify(isFunction(value) ? value(storedValue) : value)
-      );
+      const newValue = isFunction(value) ? value(storedValue) : value;
+      const len = Array.isArray(newValue)
+        ? newValue.length
+        : initialValue.length;
+      setStoredValue(newValue);
+      setLength(len);
+      window.localStorage.setItem(key, JSON.stringify(newValue));
+      window.localStorage.setItem(key + "_length", JSON.stringify(len));
     },
-    [key, storedValue]
+    [key, storedValue, initialValue]
   );
-  return [storedValue, setValue];
+
+  return [storedValue, setValue, length, loading];
 };
-
-// const useLocalStorage = (key, initialValue) => {
-//   const [storedValue, setStoredValue] = React.useState(initialValue);
-
-//   React.useEffect(() => {
-//     const item = window.localStorage.getItem(key);
-//     if (item) {
-//       setStoredValue(JSON.parse(item));
-//     }
-//   }, [key]);
-
-//   const setValue = React.useCallback(
-//     (value) => {
-//       setStoredValue((prev) => {
-//         const newValue = isFunction(value) ? value(prev) : value;
-//         window.localStorage.setItem(key, JSON.stringify(newValue));
-//         return newValue;
-//       });
-//     },
-//     [key]
-//   );
-
-//   return [storedValue, setValue];
-// };
 
 export default useLocalStorage;
