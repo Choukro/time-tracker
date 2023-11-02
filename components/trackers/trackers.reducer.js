@@ -1,6 +1,4 @@
 export const TRACKER_SET_TRACKER_ACTION = "tracker/setTracker";
-export const TRACKER_NEW_ACTION = "tracker/new";
-export const TRACKER_EDIT_ACTION = "tracker/edit";
 export const TRACKER_CREATE_ACTION = "tracker/create";
 export const TRACKER_UPDATE_ACTION = "tracker/update";
 export const TRACKER_DELETE_ACTION = "tracker/delete";
@@ -8,59 +6,35 @@ export const TRACKER_FAIL_ACTION = "tracker/fail";
 
 const trackerReducer = (state, action) => {
   switch (action.type) {
-    case "tracker/setTracker":
+    case TRACKER_SET_TRACKER_ACTION:
       return {
         ...state,
         tracker: action.payload,
         error: null,
       };
-    case "tracker/new":
-      return {
-        status: "new",
-        tracker: action.payload,
-        activeButtons: { btnSave: true, btnUp: false, btnDel: false },
-        activeInput: true,
-        error: null,
-      };
-    case "tracker/edit":
-      return {
-        status: "edition",
-        tracker: action.payload,
-        activeButtons: { btnSave: false, btnUp: true, btnDel: true },
-        activeInput: true,
-        error: null,
-      };
-    case "tracker/create":
+    case TRACKER_CREATE_ACTION:
       return {
         ...state,
         status: "created",
-        activeButtons: { btnSave: false, btnUp: false, btnDel: false },
-        activeInput: false,
         error: null,
       };
-    case "tracker/update":
+    case TRACKER_UPDATE_ACTION:
       return {
         ...state,
         status: "updated",
-        activeButtons: { btnSave: false, btnUp: true, btnDel: true },
-        activeInput: true,
         error: null,
       };
-    case "tracker/delete":
+    case TRACKER_DELETE_ACTION:
       return {
         ...state,
         status: "deleted",
         tracker: action.payload,
-        activeButtons: { btnSave: false, btnUp: false, btnDel: false },
-        activeInput: false,
         error: null,
       };
-    case "tracker/fail":
+    case TRACKER_FAIL_ACTION:
       return {
         ...state,
         status: "fail",
-        activeButtons: { btnSave: true, btnUp: true, btnDel: true },
-        activeInput: false,
         error: action.payload,
       };
     default:
