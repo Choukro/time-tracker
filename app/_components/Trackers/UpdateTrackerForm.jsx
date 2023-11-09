@@ -1,7 +1,7 @@
 import { useToast } from "@/components/ui/use-toast";
-import { hasEmptyPropertyExcludingKey } from "../utils/trackers.util.js";
-import { MESSAGE, TRACKER_CATEGORIES } from "./trackers/trackers.constants.js";
-import useEditTracker from "@/hooks/useEditTracker";
+import { hasEmptyPropertyExcludingKey } from "@/utils/trackers.util.js";
+import { MESSAGE, TRACKER_CATEGORIES } from "./trackers.constants.js";
+import useEditTracker from "../../_hooks/useEditTracker.js";
 import {
   DialogDescription,
   DialogFooter,
@@ -9,7 +9,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-import { Input } from "./ui/input.jsx";
+import { Input } from "@/components/ui/input.jsx";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Button } from "./ui/button.jsx";
+import { Button } from "@/components/ui/button.jsx";
 
 const UpdateTrackerForm = ({ tracker, onUpdateTracker, afterSave }) => {
   const error = hasEmptyPropertyExcludingKey(tracker, "endtime");
@@ -112,6 +112,24 @@ const UpdateTrackerForm = ({ tracker, onUpdateTracker, afterSave }) => {
                 </SelectItem>
                 <SelectItem value={TRACKER_CATEGORIES.cat5}>
                   {TRACKER_CATEGORIES.cat5}
+                </SelectItem>
+                <SelectItem value={TRACKER_CATEGORIES.cat6}>
+                  {TRACKER_CATEGORIES.cat6}
+                </SelectItem>
+                <SelectItem value={TRACKER_CATEGORIES.cat7}>
+                  {TRACKER_CATEGORIES.cat7}
+                </SelectItem>
+                <SelectItem value={TRACKER_CATEGORIES.cat8}>
+                  {TRACKER_CATEGORIES.cat8}
+                </SelectItem>
+                <SelectItem value={TRACKER_CATEGORIES.cat9}>
+                  {TRACKER_CATEGORIES.cat9}
+                </SelectItem>
+                <SelectItem value={TRACKER_CATEGORIES.cat10}>
+                  {TRACKER_CATEGORIES.cat10}
+                </SelectItem>
+                <SelectItem value={TRACKER_CATEGORIES.cat11}>
+                  {TRACKER_CATEGORIES.cat11}
                 </SelectItem>
               </SelectContent>
             </Select>

@@ -1,12 +1,12 @@
 import * as React from "react";
-import trackerReducer from "../components/trackers/trackers.reducer";
+import trackerReducer from "../_components/Trackers/trackers.reducer";
 import {
   TRACKER_SET_TRACKER_ACTION,
   TRACKER_CREATE_ACTION,
   TRACKER_UPDATE_ACTION,
   TRACKER_DELETE_ACTION,
   TRACKER_FAIL_ACTION,
-} from "../components/trackers/trackers.reducer";
+} from "../_components/Trackers/trackers.reducer";
 
 const useEditTracker = (defaultTracker) => {
   const [trackersState, dispatchTrackersAction] = React.useReducer(

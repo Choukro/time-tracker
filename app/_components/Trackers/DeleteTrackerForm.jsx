@@ -5,12 +5,9 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "./ui/button.jsx";
-import useEditTracker from "../hooks/useEditTracker.js";
-import {
-  MESSAGE,
-  newDefaultTracker,
-} from "../components/trackers/trackers.constants.js";
+import { Button } from "@/components/ui/button.jsx";
+import useEditTracker from "../../_hooks/useEditTracker.js";
+import { MESSAGE, newDefaultTracker } from "./trackers.constants.js";
 import { useToast } from "@/components/ui/use-toast";
 
 const DeleteTrackerForm = ({ tracker, onDeleteTracker, afterDelete }) => {

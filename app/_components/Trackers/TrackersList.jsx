@@ -4,13 +4,10 @@ import {
   getDateAsString,
   sortObjectKeysAscendingOrder,
   sortObjectKeysDescendingOrder,
-} from "../utils/trackers.util.js";
-import { TrackerCategory } from "./TrackerCategory";
-import { TrackerCard } from "./TrackerCard";
-import {
-  TRACKER_BY_DATE,
-  TRACKER_BY_CATEGORY,
-} from "./trackers/trackers.constants.js";
+} from "@/utils/trackers.util.js";
+import { TrackerCategory } from "./TrackerCategory.jsx";
+import { TrackerCard } from "./TrackerCard.jsx";
+import { TRACKER_BY_DATE, TRACKER_BY_CATEGORY } from "./trackers.constants.js";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";

@@ -1,19 +1,16 @@
 /* eslint-disable no-unused-vars */
 import * as React from "react";
 import { TrackersList } from "./TrackersList";
-import { TrackersFollowUp } from "./TrackersFollowUp.jsx";
-import db from "../data/data.js";
+import { TrackersFollowUp } from "./TrackersFollowUp";
+import db from "@/data/data.js";
 import {
   trackersFinished,
   trackersInProgress,
   hasEmptyPropertyExcludingKey,
   getTrackersFromLocalStorage,
-} from "../utils/trackers.util.js";
-import useLocalStorage from "@/hooks/useLocalStorage.js";
-import {
-  END_TIME,
-  KEY_LOCALSTORAGE,
-} from "../components/trackers/trackers.constants.js";
+} from "@/utils/trackers.util.js";
+import useLocalStorage from "../../_hooks/useLocalStorage.js";
+import { END_TIME, KEY_LOCALSTORAGE } from "./trackers.constants.js";
 
 function TrackersApp() {
   const [allTrackers, setAllTrackers, sizeTrackers, isLoading] =

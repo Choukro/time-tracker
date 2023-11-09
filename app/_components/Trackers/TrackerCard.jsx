@@ -1,5 +1,5 @@
 import * as React from "react";
-import { diffTime, getHourAsString } from "../utils/trackers.util.js";
+import { diffTime, getHourAsString } from "@/utils/trackers.util.js";
 import {
   Card,
   CardContent,
@@ -13,7 +13,7 @@ import { Hourglass, Pencil, Trash2 } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { UpdateTrackerForm } from "./UpdateTrackerForm.jsx";
 import { DeleteTrackerForm } from "./DeleteTrackerForm.jsx";
-import { MESSAGE } from "./trackers/trackers.constants.js";
+import { MESSAGE } from "./trackers.constants.js";
 
 const TrackerCard = ({ tracker, onUpdateTracker, onDeleteTracker }) => {
   const starttime = getHourAsString(tracker?.starttime);

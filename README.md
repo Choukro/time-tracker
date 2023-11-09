@@ -1,8 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div>
+  <h1 align="center"><a href="https://time-tracker-phm31.vercel.app/">Time Tracker 📊</a></h1>
+  <strong>
+    Application permettant de suivre vos tâches et le temps que vous y consacrez !<br />
+  </strong><br />
+  <a href="https://time-tracker-phm31.vercel.app/">
+    <img 
+      alt="Time Tracker"
+      src="public/timeTracker.gif" width="1280" height="420"
+    />
+  </a> 
+</div>
 
-## Getting Started
+<hr />
 
-First, run the development server:
+<!-- prettier-ignore-start -->
+![Next.js badge][next-badge] ![Taildwind CSS badge][taildwincss-badge] 
+![GPL 3.0 License][license-badge] 
+<!-- prettier-ignore-end -->
+
+<br />
+
+## <u>Objectif</u> : Amélioration d'une application existante
+
+Les améliorations concernent les points suivants :
+
+- **Design** : en utilisant une librairie tierce pour remodeler le design de l'application.
+- **UX** : en améliorant les fonctionnalistés lors de la création, suppression, mise à jour des données utilisateurs. Ajout de messages succincts qui s'affichent temporairement.
+- **Filtrage des données** : en ajoutant la possibilité de filtrer les données utilisateurs par date, par catégorie, par état.
+- **Stockage** : en utilisant le localStorage pour stocker les données utilisateurs
+
+## Languages and Tools:
+
+<img align="left" alt="Visual Studio Code" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" style="padding-right:10px;" />
+<img align="left" alt="HTML5" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" style="padding-right:10px;" />
+<img align="left" alt="CSS3" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" style="padding-right:10px;" />
+<img align="left" alt="Taildwindcss" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" style="padding-right:10px;" />
+<img align="left" alt="JavaScript" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" style="padding-right:10px;" />
+<img align="left" alt="React" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" style="padding-right:10px;" />
+<img align="left" alt="Next.js" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" style="padding-right:10px;" />
+<img align="left" alt="Git" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" style="padding-right:10px;" />
+<br />
+
+## Démarrer l'application
+
+Pour demarrer l'application, lancez le serveur de développement :
 
 ```bash
 npm run dev
@@ -10,27 +51,31 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Puis, ouvrez votre navigateur à l'adresse suivante : [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+L'application est un projet [Next.js][next].
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Vous pouvez aussi acceder au [déploiement sur Vercel](https://time-tracker-phm31.vercel.app/).
 
-## Learn More
+<br />
 
-To learn more about Next.js, take a look at the following resources:
+## Contributeurs
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<table>
+  <tr>
+    <td align="center"><a href="https://ph-merrer.fr/"><img src="https://avatars.githubusercontent.com/u/37657993" width="80px;" alt="Pierre-Henri Merrer"/><br /><sub><b>Pierre-Henri Merrer</b></sub></a><br /><a href="https://github.com/Choukro/time-tracker" title="Code">💻</a> <a href="https://github.com/Choukro/time-tracker/blob/main/README.md" title="Documentation">📖</a>
+  </tr>
+  
+</table>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<!-- prettier-ignore-start -->
+[npm]: https://www.npmjs.com/
+[next]: https://nextjs.org/docs
+[git]: https://git-scm.com/
+[react-badge]: https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB
+[taildwincss-badge]: https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white
+[next-badge]: https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white
+[license-badge]: https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
+<!-- prettier-ignore-end -->

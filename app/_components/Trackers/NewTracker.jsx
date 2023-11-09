@@ -1,8 +1,7 @@
 import * as React from "react";
-import "./styles/TrackerEditForm.css";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { NewTrackerForm } from "../components/NewTrackerForm.jsx";
+import { NewTrackerForm } from "./NewTrackerForm.jsx";
 import { PlusSquare } from "lucide-react";
 
 const NewTracker = ({ onAddTracker }) => {

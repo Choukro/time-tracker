@@ -1,5 +1,5 @@
 import * as React from "react";
-import { isFunction } from "../utils/trackers.util.js";
+import { isFunction } from "@/utils/trackers.util.js";
 
 const useLocalStorage = (key, initialValue) => {
   const [storedValue, setStoredValue] = React.useState(initialValue);

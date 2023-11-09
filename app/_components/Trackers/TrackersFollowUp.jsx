@@ -7,9 +7,9 @@ import {
 } from "@/components/ui/card";
 import { trackersFinished, trackersInProgress } from "@/utils/trackers.util.js";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Input } from "./ui/input.jsx";
+import { Input } from "@/components/ui/input.jsx";
 import { RotateCcw } from "lucide-react";
-import { Button } from "./ui/button.jsx";
+import { Button } from "@/components/ui/button.jsx";
 import { NewTracker } from "./NewTracker.jsx";
 
 const TrackersFollowUp = ({

@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { getDateTimeForPicker } from "../../utils/trackers.util.js";
+import { getDateTimeForPicker } from "../../../utils/trackers.util.js";
 
 export const TRACKER_BY_DATE = "starttime";
 export const TRACKER_BY_CATEGORY = "category";
@@ -16,10 +16,16 @@ export const MESSAGE = {
 
 export const TRACKER_CATEGORIES = {
   cat1: "Sport",
-  cat2: "Code",
-  cat3: "Films",
-  cat4: "Documentation",
-  cat5: "Défaut",
+  cat2: "Loisir",
+  cat3: "Vie quotidienne",
+  cat4: "Transport",
+  cat5: "Réunion",
+  cat6: "RDV Client",
+  cat7: "Gestion de projet",
+  cat8: "Suivi client",
+  cat9: "Gestion administrative",
+  cat10: "Gestion comptable",
+  cat11: "Autre",
 };
 
 export const newDefaultTracker = () => ({
