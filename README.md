@@ -14,8 +14,8 @@
 <hr />
 
 <!-- prettier-ignore-start -->
-![Next.js badge][next-badge] ![Taildwind CSS badge][taildwincss-badge] 
-![GPL 3.0 License][license-badge] 
+![Next.js badge][next-badge] ![Taildwind CSS badge][taildwincss-badge]
+<br />![GPL 3.0 License][license-badge] 
 <!-- prettier-ignore-end -->
 
 <br />
@@ -39,6 +39,7 @@ Les améliorations concernent les points suivants :
 <img align="left" alt="React" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" style="padding-right:10px;" />
 <img align="left" alt="Next.js" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" style="padding-right:10px;" />
 <img align="left" alt="Git" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" style="padding-right:10px;" />
+<br />
 <br />
 
 ## Démarrer l'application
@@ -65,7 +66,7 @@ Vous pouvez aussi acceder au [déploiement sur Vercel](https://time-tracker-phm3
 
 <table>
   <tr>
-    <td align="center"><a href="https://ph-merrer.fr/"><img src="https://avatars.githubusercontent.com/u/37657993" width="80px;" alt="Pierre-Henri Merrer"/><br /><sub><b>Pierre-Henri Merrer</b></sub></a><br /><a href="https://github.com/Choukro/time-tracker" title="Code">💻</a> <a href="https://github.com/Choukro/time-tracker/blob/main/README.md" title="Documentation">📖</a>
+    <td align="center"><a href="https://ph-merrer.fr/"><img src="https://avatars.githubusercontent.com/u/37657993" width="80px;" alt="Pierre-Henri Merrer"/><br /><sub><b>Pierre-Henri Merrer</b></sub></a><br /><a href="https://github.com/Choukro/time-tracker" title="Code">💻</a> <a href="#objectif--amélioration-dune-application-existante" title="Documentation">📖</a>
   </tr>
   
 </table>
