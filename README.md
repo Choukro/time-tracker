@@ -20,14 +20,18 @@
 
 <br />
 
-## <u>Objectif</u> : Amélioration d'une application existante
+## <u>Objectif</u> : Amélioration d'une application existante de [Tracker de temps](https://time-tracker-phm31.vercel.app/)
 
-Les améliorations concernent les points suivants :
+L'application existante est déployée sur [Vercel][vercel], et est disponible [en cliquant ici >>](https://time-tracker-phm31.vercel.app/).
+L'accès au déploiement sur [Vercel][vercel] de la nouvelle version est disponible [en cliquant ici >>](https://time-tracker-phm31.vercel.app/).
+Cette nouvelle application est un projet [Next.js][next] et les améliorations de cette nouvelle version concernent les points suivants :
 
 - **Design** : en utilisant une librairie tierce pour remodeler le design de l'application.
 - **UX** : en améliorant les fonctionnalistés lors de la création, suppression, mise à jour des données utilisateurs. Ajout de messages succincts qui s'affichent temporairement.
 - **Filtrage des données** : en ajoutant la possibilité de filtrer les données utilisateurs par date, par catégorie, par état.
 - **Stockage** : en utilisant le localStorage pour stocker les données utilisateurs
+
+Les améliorations à venir sont définies dans les [Issues][issues].
 
 ## Languages and Tools:
 
@@ -56,10 +60,6 @@ pnpm dev
 
 Puis, ouvrez votre navigateur à l'adresse suivante : [http://localhost:3000](http://localhost:3000).
 
-L'application est un projet [Next.js][next].
-
-Vous pouvez aussi acceder au [déploiement sur Vercel](https://time-tracker-phm31.vercel.app/).
-
 <br />
 
 ## Contributeurs
@@ -79,4 +79,6 @@ Vous pouvez aussi acceder au [déploiement sur Vercel](https://time-tracker-phm3
 [taildwincss-badge]: https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white
 [next-badge]: https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white
 [license-badge]: https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
+[vercel]: https://vercel.com/
+[issues]: https://github.com/Choukro/time-tracker/issues
 <!-- prettier-ignore-end -->
