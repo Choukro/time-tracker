@@ -1,8 +1,10 @@
 <div>
   <h1 align="center"><a href="https://time-tracker-phm31.vercel.app/">Time Tracker 📊</a></h1>
+  <div align="center">
   <strong>
-    Application permettant de suivre vos tâches et le temps que vous y consacrez !<br />
-  </strong><br />
+    Amélioration d'une application permettant de suivre vos tâches et le temps que vous y consacrez !
+  </strong>
+  </div><br />
   <a href="https://time-tracker-phm31.vercel.app/">
     <img 
       alt="Time Tracker"
@@ -22,8 +24,10 @@
 
 ## <u>Objectif</u> : Amélioration d'une application existante de [Tracker de temps](https://time-tracker-phm31.vercel.app/)
 
-L'application existante est déployée sur [Vercel][vercel], et est disponible [en cliquant ici >>](https://time-tracker-phm31.vercel.app/).
+L'application existante est déployée sur [Vercel][vercel], et, est disponible [en cliquant ici >>](https://time-tracker-phm31.vercel.app/).
+
 L'accès au déploiement sur [Vercel][vercel] de la nouvelle version est disponible [en cliquant ici >>](https://time-tracker-phm31.vercel.app/).
+
 Cette nouvelle application est un projet [Next.js][next] et les améliorations de cette nouvelle version concernent les points suivants :
 
 - **Design** : en utilisant une librairie tierce pour remodeler le design de l'application.
