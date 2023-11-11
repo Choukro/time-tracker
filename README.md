@@ -2,7 +2,7 @@
   <h1 align="center"><a href="https://time-tracker-phm31.vercel.app/">Time Tracker 📊</a></h1>
   <div align="center">
   <strong>
-    Amélioration d'une application permettant de suivre vos tâches et le temps que vous y consacrez !
+    Amélioration d'une application existante permettant de suivre vos tâches et le temps que vous y consacrez !
   </strong>
   </div><br />
   <a href="https://time-tracker-phm31.vercel.app/">
